@@ -3,12 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.5",
+    "@reduxjs/toolkit": "^1.8.5",
+    "@tanstack/react-query": "^4.3.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
+    "redux-saga": "^1.2.1",
+    "smooth-scrollbar": "^8.7.5",
+    "swiper": "^8.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
