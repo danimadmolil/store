@@ -1,0 +1,13 @@
+.dr_wrapper_inner {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+@media only screen and (max-width: 900px) {
+  .dr_wrapper_inner {
+    display: flex;
+    flex-flow: column;
+   
+  }
+}
