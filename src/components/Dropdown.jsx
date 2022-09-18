@@ -6,6 +6,7 @@ import {
   ArrowDropUpRounded,
   ArrowLeft,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import {
   Box,
   Collapse,
@@ -31,7 +32,6 @@ export default function Dropdown({ children, title = "title", subs }) {
   const xl = useMediaQuery(theme.breakpoints.up("lg"));
   let currentBr = useBreakpoint();
 
-  console.log("currentBr", currentBr);
   function handleCollapse(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -75,7 +75,15 @@ export default function Dropdown({ children, title = "title", subs }) {
               textAlign: "right",
             },
           }}>
-          {title}
+          <Link
+            to={`/${title}`}
+            style={{
+              textDecoration: "none",
+              paddingRight: 8,
+              color: "inherit",
+            }}>
+            {title}
+          </Link>
         </ListItemText>
         {currentBr === "lg" || currentBr === "xl" ? (
           <ArrowLeft sx={{ marginLeft: "auto" }} />

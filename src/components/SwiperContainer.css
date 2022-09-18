@@ -1,0 +1,29 @@
+.sw_pg{
+    width:20px;
+    height: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: white;
+}
+.sw_active{
+    width:50px !important;
+    height: 10px !important;
+    border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    -ms-border-radius: 10px !important;
+    -o-border-radius: 10px !important;
+    background-color: white !important;
+    -webkit-transition: all 0.3s ease-in ;
+    -moz-transition: all 0.3s ease-in ;
+    -ms-transition: all 0.3s ease-in ;
+    -o-transition: all 0.3s ease-in ;
+}
+.swiper-button-disabled{
+    background-color: rgb(197, 197, 197) !important; 
+    color: gray !important; 
+    opacity: 0.55;
+}

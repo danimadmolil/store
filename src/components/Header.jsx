@@ -33,7 +33,8 @@ import TopLevelMenu from "./TopLevelMenu";
 import useBreakpoint from "../hooks/useBreakpoint";
 import SuperMenu from "./SuperMneu";
 import { display } from "@mui/system";
-const Navbar = styled("div", { shouldForwardProp: (prop) => true })(
+import server from "../server.json";
+const Navbar = styled(Box, { shouldForwardProp: (prop) => true })(
   ({ theme, open = false }) => ({
     width: "100%",
     height: "80px",
@@ -65,6 +66,7 @@ const NavMenu = styled("nav", { shouldForwardProp: () => true })(
       flexFlow: "column",
       zIndex: theme.zIndex.drawer + 10,
       overflowY: "scroll",
+      direction: "rtl",
     },
   })
 );
@@ -97,30 +99,17 @@ function CustomMenuItem({
     </MenuItem>
   );
 }
-const Header = styled("div")(({ theme }) => ({
+const HeaderTop = styled("div")(({ theme }) => ({
   width: "100%",
   height: "auto",
   boxSizing: "border-box",
   padding: "18px 0px",
 }));
 
-export default function Header2() {
-  // useEffect(() => {
-  //   fetch("http://127.0.0.1:4000/menu")
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //       throw { error: "Failed to fetch menus from server!" };
-  //     })
-  //     .then((res) => {
-  //       console.log("result", res.data);
-  //       setMenus(res.data);
-  //     });
-  // }, []);
+export default function Header() {
+  const [menus, setMenus] = useState(server.menu);
   const { t } = useTranslation();
   const screenSize = useBreakpoint();
-  console.log("screen__size", screenSize);
   const theme = useTheme();
   const [collapse, setCollapse] = useState(false);
   function handleCollapse() {
@@ -136,14 +125,23 @@ export default function Header2() {
     <Grid
       container
       sx={{
+        position: "relative",
+        top: 0,
+        left: 0,
         boxSizing: "border-box",
         padding: "0 28px",
         justifyContent: "space-between",
+        height: "128px",
+        zIndex: "10000",
+        background: "white",
         [theme.breakpoints.down("lg")]: {
           padding: "0 28px",
         },
         [theme.breakpoints.up("md")]: {
           flexDirection: "column",
+        },
+        [theme.breakpoints.between("xs", "md")]: {
+          height: "170px",
         },
       }}>
       <Backdrop
@@ -156,7 +154,7 @@ export default function Header2() {
         }}
         open={menu}
         onClick={toggleMenu}></Backdrop>
-      <Header>
+      <HeaderTop>
         <Grid
           alignItems={"center"}
           container
@@ -276,7 +274,7 @@ export default function Header2() {
             </Box>
           </Box>
         </Grid>
-      </Header>
+      </HeaderTop>
       <Navbar sx={{ display: "flex", justifyContent: "end" }}>
         <MenuItem
           disableRipple
@@ -284,11 +282,11 @@ export default function Header2() {
           <Typography>{"لوکیشن"}</Typography>
         </MenuItem>
 
-        <NavMenu open={menu}>
+        <NavMenu open={menu} onWheel={(e) => e.stopPropagation()}>
           <CustomMenuItem title={"تخفیف های ویژه"}></CustomMenuItem>
           <CustomMenuItem title={"لباس مردانه"}></CustomMenuItem>
           <CustomMenuItem title={"لباس زنانه"}></CustomMenuItem>
-          <SuperMenu title="دسته بندی کالاها" />
+          <SuperMenu title="دسته بندی کالاها" menus={menus} />
         </NavMenu>
       </Navbar>
     </Grid>

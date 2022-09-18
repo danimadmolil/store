@@ -1,0 +1,271 @@
+{
+  "banners": [
+    {
+      "id": 1,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/16f6cf08b3951e04597f3a955704bf7f2384a892_1656759442.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 2,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/cf9e20e383c5a6d20def20cc3f41b86f4fd79245_1658237968.gif?x-oss-process=image"
+    },
+    {
+      "id": 3,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/1ccb5cb03c24a71330006620c433eaa69dedb56b_1662452783.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 4,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/ce0f19c7a8d4168ffa323f424551182dde266217_1662375614.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 5,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/44a9f47cfb07aa1f1487c10cd807026f0e922db2_1662384097.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 6,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/b46a652bb61e6680a193e49ed5e9f3755bde05bc_1662448867.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 7,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/c805558b4c1d2105a7ebc8cbbf9220fdfcad6f5b_1655629694.jpg?x-oss-process=image/quality,q_95"
+    },
+    {
+      "id": 8,
+      "img": "https://dkstatics-public.digikala.com/digikala-adservice-banners/9e07d541b92f1564241b835c36174b35da6b31a5_1661089146.jpg?x-oss-process=image/quality,q_95"
+    }
+  ],
+  "menu": [
+    {
+      "id": 15,
+      "title": "موبایل",
+      "url": "#",
+      "parrentMenuId": null,
+      "subMenu": [
+        {
+          "id": 16,
+          "title": "برندهای مختلف گوشی",
+          "url": "#",
+          "parrentMenuId": 15,
+          "subMenu": [
+            {
+              "id": 17,
+              "title": "گوشی اپل",
+              "url": "#",
+              "parrentMenuId": 16,
+              "subMenu": []
+            },
+            {
+              "id": 18,
+              "title": "گوشی سامسونگ",
+              "url": "#",
+              "parrentMenuId": 16,
+              "subMenu": []
+            },
+            {
+              "id": 19,
+              "title": "گوشی شیائومی",
+              "url": "#",
+              "parrentMenuId": 16,
+              "subMenu": []
+            },
+            {
+              "id": 20,
+              "title": "گوشی هواوی",
+              "url": "#",
+              "parrentMenuId": 16,
+              "subMenu": []
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "title": "گوشی براساس قیمت",
+          "url": "#",
+          "parrentMenuId": 15,
+          "subMenu": [
+            {
+              "id": 22,
+              "title": "گوشی تا 2 میلیون",
+              "url": "#",
+              "parrentMenuId": 21,
+              "subMenu": []
+            },
+            {
+              "id": 23,
+              "title": "گوشی تا 5 میلیون",
+              "url": "#",
+              "parrentMenuId": 21,
+              "subMenu": []
+            },
+            {
+              "id": 27,
+              "title": "گوشی تا 64 گیگابایت",
+              "url": "#",
+              "parrentMenuId": 21,
+              "subMenu": []
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "title": "گوشی براساس حافظه",
+          "url": "#",
+          "parrentMenuId": 15,
+          "subMenu": [
+            {
+              "id": 25,
+              "title": "گوشی تا 16 گیگابایت",
+              "url": "#",
+              "parrentMenuId": 24,
+              "subMenu": []
+            },
+            {
+              "id": 26,
+              "title": "گوشی تا 32 گیگابایت",
+              "url": "#",
+              "parrentMenuId": 24,
+              "subMenu": []
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "title": "رزولوشن عکس",
+          "url": "#",
+          "parrentMenuId": 15,
+          "subMenu": [
+            {
+              "id": 29,
+              "title": "تا 32 مگاپیکسل",
+              "url": "#",
+              "parrentMenuId": 28,
+              "subMenu": []
+            },
+            {
+              "id": 30,
+              "title": "تا 16 مگاپیکسل",
+              "url": "#",
+              "parrentMenuId": 28,
+              "subMenu": []
+            },
+            {
+              "id": 31,
+              "title": "تا 64 مگاپیکسل",
+              "url": "#",
+              "parrentMenuId": 28,
+              "subMenu": []
+            },
+            {
+              "id": 32,
+              "title": "تا 128 مگاپیکسل",
+              "url": "#",
+              "parrentMenuId": 28,
+              "subMenu": []
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "title": "گوشی براساس کاربری",
+          "url": "#",
+          "parrentMenuId": 15,
+          "subMenu": [
+            {
+              "id": 34,
+              "title": "گوشی اقتصادی",
+              "url": "#",
+              "parrentMenuId": 33,
+              "subMenu": []
+            },
+            {
+              "id": 35,
+              "title": "گوشی میان رده",
+              "url": "#",
+              "parrentMenuId": 33,
+              "subMenu": []
+            },
+            {
+              "id": 36,
+              "title": "گوی دانش اموزی",
+              "url": "#",
+              "parrentMenuId": 33,
+              "subMenu": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "title": "کالای دیجیتال",
+      "url": "#",
+      "parrentMenuId": null,
+      "subMenu": [
+        {
+          "id": 38,
+          "title": "لوازم جانبی گوشی",
+          "url": "#",
+          "parrentMenuId": 37,
+          "subMenu": [
+            {
+              "id": 39,
+              "title": "کیف و کاور گوشی",
+              "url": "#",
+              "parrentMenuId": 38,
+              "subMenu": []
+            },
+            {
+              "id": 40,
+              "title": "پاور بانک (شارژر همراه)",
+              "url": "#",
+              "parrentMenuId": 38,
+              "subMenu": []
+            },
+            {
+              "id": 41,
+              "title": "پایه نگهدارنده گوشی",
+              "url": "#",
+              "parrentMenuId": 38,
+              "subMenu": []
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "title": "گوشی موبایل",
+          "url": "#",
+          "parrentMenuId": 37,
+          "subMenu": [
+            {
+              "id": 43,
+              "title": "اپل",
+              "url": "#",
+              "parrentMenuId": 42,
+              "subMenu": []
+            },
+            {
+              "id": 44,
+              "title": "سامسونگ",
+              "url": "#",
+              "parrentMenuId": 42,
+              "subMenu": []
+            },
+            {
+              "id": 45,
+              "title": "هواوی",
+              "url": "#",
+              "parrentMenuId": 42,
+              "subMenu": []
+            },
+            {
+              "id": 46,
+              "title": "شیائومی",
+              "url": "#",
+              "parrentMenuId": 42,
+              "subMenu": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

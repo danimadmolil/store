@@ -126,7 +126,6 @@ const TopLevelMenu = ({ title, menu }) => {
         }}
         direction={"column"}>
         <Link
-          component={"a"}
           style={{
             textDecoration: "none",
             paddingRight: 8,
@@ -144,26 +143,28 @@ const TopLevelMenu = ({ title, menu }) => {
             // backgroundColor: "blue",
             "& .MuiCollapse-wrapper": {},
           }}>
-          {renderMenu(menu)}
+          {recursiveRenderMenus(menu)}
         </Box>
       </Collapse>
     </Box>
   );
 };
 
-function renderMenu(_menu) {
+function recursiveRenderMenus(_menu) {
   if (!Array.isArray(_menu)) {
     _menu = _menu.subMenu;
   }
-  console.log("menu", [_menu]);
   return _menu.map((subMenu) => {
     if (subMenu.subMenu && subMenu.subMenu.length > 0) {
       return (
-        <Dropdown title={subMenu.title}>{renderMenu(subMenu.subMenu)}</Dropdown>
+        <Dropdown key={subMenu.id} title={subMenu.title}>
+          {recursiveRenderMenus(subMenu.subMenu)}
+        </Dropdown>
       );
     } else {
       return (
         <CustomListItem
+          key={subMenu.id}
           sx={{
             width: "150px",
             "& .MuiListItem-root": {
@@ -179,7 +180,15 @@ function renderMenu(_menu) {
                 paddingRight: "6px",
               },
             }}>
-            {subMenu.title}
+            <Link
+              style={{
+                textDecoration: "none",
+                paddingRight: 8,
+                color: "inherit",
+              }}
+              to={`/${subMenu.title}`}>
+              {subMenu.title}
+            </Link>
           </ListItemText>
         </CustomListItem>
       );

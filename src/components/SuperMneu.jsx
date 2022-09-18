@@ -14,70 +14,14 @@ import {
 import useBreakpoint from "../hooks/useBreakpoint";
 import { ArrowDropDownRounded, ArrowDropUpRounded } from "@mui/icons-material";
 
-export default function SuperMenu({ title = "" }) {
+export default function SuperMenu({ title = "", menus }) {
   const theme = useTheme();
   const mouseOverDropDown = useRef(false);
   const screenSize = useBreakpoint();
   const smallerThanMedium = useMediaQuery(
     theme.breakpoints.between("xs", "md")
   );
-  const [menus] = useState([
-    {
-      id: 1,
-      title: "گوشی موبایل",
-      subMenu: [
-        {
-          id: 1,
-          title: "برندهای مختلف گوشی",
-          subMenu: [
-            { id: 2, title: "گوشی شیائومی", subMenu: [] },
-            { id: 2, title: "گوشی اپل", subMenu: [] },
-            { id: 3, title: "گوشی سامسونگ", subMenu: [] },
-            { id: 4, title: "گوشی سونی", subMenu: [] },
-            { id: 5, title: "گوشی ال جی", subMenu: [] },
-            { id: 6, title: "گوشی هواوی", subMenu: [] },
-          ],
-        },
-        {
-          id: 7,
-          title: "item 1",
-          subMenu: [
-            { id: 1, title: "item 2", subMenu: [] },
-            { id: 2, title: "item 2", subMenu: [] },
-            { id: 3, title: "item 2", subMenu: [] },
-            { id: 4, title: "item 2", subMenu: [] },
-            { id: 5, title: "item 2", subMenu: [] },
-            { id: 6, title: "item 1 sub 1" },
-            { id: 7, title: "item 1 sub 2" },
-          ],
-        },
-        {
-          title: "item 1",
-          subMenu: [
-            { id: 8, title: "item 2", subMenu: [] },
-            { id: 9, title: "item 2", subMenu: [] },
-            { id: 10, title: "item 2", subMenu: [] },
-            { id: 11, title: "item 2", subMenu: [] },
-            { id: 12, title: "item 2", subMenu: [] },
-            { id: 13, title: "item 1 sub 1" },
-            { id: 14, title: "item 1 sub 2" },
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: "menu 1",
-      subMenu: [
-        { id: 1, title: "item 1", subMenu: [] },
-        { id: 2, title: "item 2", subMenu: [] },
-        { id: 3, title: "item 2", subMenu: [] },
-        { id: 4, title: "item 2", subMenu: [] },
-        { id: 5, title: "item 2", subMenu: [] },
-        { id: 6, title: "item 2", subMenu: [] },
-      ],
-    },
-  ]);
+
   const [dropDown, setDropDown] = useState(false);
   function handleDropDownMouseLeave() {
     if (screenSize === "md" || screenSize === "lg" || screenSize === "xl") {
@@ -127,7 +71,6 @@ export default function SuperMenu({ title = "" }) {
       {smallerThanMedium ? (
         <Collapse
           unmountOnExit
-          className="you_fuckker****"
           orientation="vertical"
           onClick={(e) => e.stopPropagation()}
           in={collapse}
@@ -229,7 +172,8 @@ export default function SuperMenu({ title = "" }) {
                 display: "flex",
                 flexFlow: "column",
               }}>
-              {menus && menus.map((menu) => <TopLevelMenu menu={menu} />)}
+              {menus &&
+                menus.map((menu) => <TopLevelMenu key={menu.id} menu={menu} />)}
             </List>
           </Box>
         </Paper>

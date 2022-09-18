@@ -4,11 +4,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./normalize.css";
 import "./assets/fonts/NotoSansArabic-Black.ttf";
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/zoom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <App />
-  </React.StrictMode>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
