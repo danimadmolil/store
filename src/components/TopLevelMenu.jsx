@@ -143,28 +143,28 @@ const TopLevelMenu = ({ title, menu }) => {
             // backgroundColor: "blue",
             "& .MuiCollapse-wrapper": {},
           }}>
-          {recursiveRenderMenus(menu)}
+          {recursiveRenderMenus(menu, "subCategory")}
         </Box>
       </Collapse>
     </Box>
   );
 };
 
-function recursiveRenderMenus(_menu) {
+function recursiveRenderMenus(_menu, subProperty) {
   if (!Array.isArray(_menu)) {
-    _menu = _menu.subMenu;
+    _menu = _menu[subProperty];
   }
-  return _menu.map((subMenu) => {
-    if (subMenu.subMenu && subMenu.subMenu.length > 0) {
+  return _menu.map((sub) => {
+    if (sub[subProperty] && sub[subProperty].length > 0) {
       return (
-        <Dropdown key={subMenu.id} title={subMenu.title}>
-          {recursiveRenderMenus(subMenu.subMenu)}
+        <Dropdown key={sub.id} title={sub.title}>
+          {recursiveRenderMenus(sub[subProperty])}
         </Dropdown>
       );
     } else {
       return (
         <CustomListItem
-          key={subMenu.id}
+          key={sub.id}
           sx={{
             width: "150px",
             "& .MuiListItem-root": {
@@ -186,8 +186,8 @@ function recursiveRenderMenus(_menu) {
                 paddingRight: 8,
                 color: "inherit",
               }}
-              to={`/${subMenu.title}`}>
-              {subMenu.title}
+              to={`/${sub.title}`}>
+              {sub.title}
             </Link>
           </ListItemText>
         </CustomListItem>
