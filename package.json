@@ -25,6 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "cd server & yarn start",
+    "start:all": "yarn start & yarn server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
