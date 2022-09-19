@@ -52,7 +52,6 @@ const TopLevelMenuItem = styled(ListItem, { shouldForwardProp: () => true })(
 
 const TopLevelMenu = ({ title, menu, subProperty }) => {
   const theme = useTheme();
-  console.log("TopLevelMenu subProperty", subProperty);
   const mdAndBigger = useMediaQuery(theme.breakpoints.up("md"));
   const screensBelowMedium = useMediaQuery(
     theme.breakpoints.between("xs", "md")
@@ -144,7 +143,7 @@ const TopLevelMenu = ({ title, menu, subProperty }) => {
             // backgroundColor: "blue",
             "& .MuiCollapse-wrapper": {},
           }}>
-          {recursiveRenderMenus(menu, subProperty)}
+          {recursiveRenderMenus(menu[subProperty], subProperty)}
         </Box>
       </Collapse>
     </Box>
@@ -156,10 +155,11 @@ function recursiveRenderMenus(_menu, subProperty) {
     _menu = [_menu];
   }
   return _menu.map((sub) => {
+    console.log("sub", sub);
     if (sub[subProperty] && sub[subProperty].length > 0) {
       return (
         <Dropdown key={sub.id} title={sub.title}>
-          {recursiveRenderMenus(sub[subProperty])}
+          {recursiveRenderMenus(sub[subProperty], subProperty)}
         </Dropdown>
       );
     } else {
