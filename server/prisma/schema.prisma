@@ -19,10 +19,27 @@ model user {
 }
 
 model Product {
-  id         Int                 @id @default(autoincrement())
-  name       String
-  price      Float
-  categories CategoryOnProduct[]
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  price              Float
+  categories         CategoryOnProduct[]
+  HotOffersOnProduct HotOffersOnProduct[]
+}
+
+model HotOffers {
+  id                 Int                  @id @default(autoincrement())
+  offPercent         String
+  expiresOn          DateTime
+  title              String
+  HotOffersOnProduct HotOffersOnProduct[]
+}
+
+model HotOffersOnProduct {
+  id          Int       @id @default(autoincrement())
+  product     Product   @relation(fields: [productId], references: [id])
+  productId   Int
+  hotOffer    HotOffers @relation(fields: [hotOffersId], references: [id])
+  hotOffersId Int
 }
 
 model Category {
@@ -34,12 +51,6 @@ model Category {
   parrentCategoryId Int?
   products          CategoryOnProduct[]
 }
-
-// model Category {
-//   id       Int                 @id @default(autoincrement())
-//   name     String
-//   products CategoryOnProduct[]
-// }
 
 model CategoryOnProduct {
   id         Int       @id @default(autoincrement())
