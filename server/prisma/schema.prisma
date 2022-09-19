@@ -26,10 +26,20 @@ model Product {
 }
 
 model Category {
-  id       Int                 @id @default(autoincrement())
-  name     String
-  products CategoryOnProduct[]
+  id                Int                 @id @default(autoincrement())
+  title             String
+  url               String              @default("#")
+  parentCategory    Category?           @relation("parentSubCategory", fields: [parrentCategoryId], references: [id])
+  subCategory       Category[]          @relation("parentSubCategory")
+  parrentCategoryId Int?
+  products          CategoryOnProduct[]
 }
+
+// model Category {
+//   id       Int                 @id @default(autoincrement())
+//   name     String
+//   products CategoryOnProduct[]
+// }
 
 model CategoryOnProduct {
   id         Int       @id @default(autoincrement())
@@ -46,15 +56,6 @@ model Order {
   id     Int  @id @default(autoincrement())
   userId Int
   user   user @relation(fields: [userId], references: [id])
-}
-
-model Menu {
-  id            Int    @id @default(autoincrement())
-  title         String
-  url           String @default("#")
-  parentMenu    Menu?  @relation("parentSubCategory", fields: [parrentMenuId], references: [id])
-  subMenu       Menu[] @relation("parentSubCategory")
-  parrentMenuId Int?
 }
 
 model Session {

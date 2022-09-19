@@ -33,7 +33,7 @@ import TopLevelMenu from "./TopLevelMenu";
 import useBreakpoint from "../hooks/useBreakpoint";
 import SuperMenu from "./SuperMneu";
 import { display } from "@mui/system";
-import server from "../server.json";
+
 const Navbar = styled(Box, { shouldForwardProp: (prop) => true })(
   ({ theme, open = false }) => ({
     width: "100%",
@@ -107,7 +107,7 @@ const HeaderTop = styled("div")(({ theme }) => ({
 }));
 
 export default function Header() {
-  const [menus, setMenus] = useState(server.menu);
+  const [categories, setCategories] = useState();
   const { t } = useTranslation();
   const screenSize = useBreakpoint();
   const theme = useTheme();
@@ -115,7 +115,16 @@ export default function Header() {
   function handleCollapse() {
     setCollapse(!collapse);
   }
-
+  useEffect(() => {
+    fetch("http://localhost:4001/category")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw { error: "failed to fetch /category route" };
+      })
+      .then((res) => setCategories(res));
+  }, []);
   const [menu, setMenu] = useState(false);
 
   function toggleMenu() {
@@ -286,7 +295,11 @@ export default function Header() {
           <CustomMenuItem title={"تخفیف های ویژه"}></CustomMenuItem>
           <CustomMenuItem title={"لباس مردانه"}></CustomMenuItem>
           <CustomMenuItem title={"لباس زنانه"}></CustomMenuItem>
-          <SuperMenu title="دسته بندی کالاها" menus={menus} />
+          <SuperMenu
+            title="دسته بندی کالاها"
+            menus={categories}
+            subProperty={"subCategory"}
+          />
         </NavMenu>
       </Navbar>
     </Grid>

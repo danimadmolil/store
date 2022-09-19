@@ -14,8 +14,9 @@ import {
 import useBreakpoint from "../hooks/useBreakpoint";
 import { ArrowDropDownRounded, ArrowDropUpRounded } from "@mui/icons-material";
 
-export default function SuperMenu({ title = "", menus }) {
+export default function SuperMenu({ title = "", menus, subProperty }) {
   const theme = useTheme();
+  console.log("super menu", subProperty);
   const mouseOverDropDown = useRef(false);
   const screenSize = useBreakpoint();
   const smallerThanMedium = useMediaQuery(
@@ -121,7 +122,11 @@ export default function SuperMenu({ title = "", menus }) {
                 }}>
                 {menus &&
                   menus.map((menu) => (
-                    <TopLevelMenu key={menu.id} menu={menu} />
+                    <TopLevelMenu
+                      key={menu.id}
+                      menu={menu}
+                      subProperty={subProperty}
+                    />
                   ))}
               </List>
             </Box>
@@ -173,7 +178,13 @@ export default function SuperMenu({ title = "", menus }) {
                 flexFlow: "column",
               }}>
               {menus &&
-                menus.map((menu) => <TopLevelMenu key={menu.id} menu={menu} />)}
+                menus.map((menu) => (
+                  <TopLevelMenu
+                    key={menu.id}
+                    menu={menu}
+                    subProperty={subProperty}
+                  />
+                ))}
             </List>
           </Box>
         </Paper>
