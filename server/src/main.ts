@@ -5,10 +5,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: function (req, callback) {
       let corsOption;
+      corsOption = { cors: false };
       if (allowedCrossOriginRoutes.indexOf(req.header('Origin')) !== -1) {
-        corsOption = { cors: false };
+        // corsOption = { cors: false };
       } else {
-        corsOption = { cors: true };
+        // corsOption = { cors: true };
       }
       return callback(null, corsOption);
     },
