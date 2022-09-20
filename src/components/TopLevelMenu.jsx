@@ -62,7 +62,6 @@ const TopLevelMenu = ({ title, menu, subProperty }) => {
     }
   }, [screensBelowMedium]);
   const currentScreenSize = useBreakpoint();
-  const bigScreens = { md: null, lg: null, xl: null };
   const [showDropDown, setShowDropDown] = useState(false);
   function handleMouseOver() {
     if (mdAndBigger) {
@@ -107,13 +106,8 @@ const TopLevelMenu = ({ title, menu, subProperty }) => {
           overflow: "hidden",
           flexFlow: "column",
           top: 0,
-          width: [
-            "100%",
-            "100%",
-            "calc(98vw - 200px)",
-            "calc(98vw - 200px)",
-            "calc(98vw - 200px)",
-          ],
+          right: [0, 0, "200px", "200px", "200px"],
+          width: ["100%", "100%", "auto", "auto", "auto"],
           position: ["static", "static", "absolute", "absolute", "absolute"],
           boxSizing: "border-box",
           height: "100%",

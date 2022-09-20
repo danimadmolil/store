@@ -139,6 +139,7 @@ export default function SuperMenu({ title = "", menus, subProperty }) {
           onMouseLeave={handleDropDownMouseLeave}
           sx={{
             width: "98vw",
+            maxWidth: "1920px",
             height: "500px",
             top: "120px",
             left: "50%",
