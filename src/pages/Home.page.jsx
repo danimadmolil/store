@@ -7,19 +7,6 @@ import SwiperContainer from "../components/SwiperContiner";
 import server from "../server.json";
 import HotOffers from "../components/HotOffers";
 export default function Home() {
-  const [hotOffers, setHotOffers] = useState();
-  useEffect(() => {
-    fetch("http://localhost:4001/hot-offer")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw { error: "failed to get /hot-offers route" };
-      })
-      .then((res) => {
-        setHotOffers(res);
-      });
-  }, []);
   const theme = useTheme();
   return (
     <Box
@@ -86,8 +73,8 @@ export default function Home() {
           )}
         />
       </Box>
-      {hotOffers &&
-        hotOffers.map((hotOffer) => <HotOffers hotOffer={hotOffer} />)}
+      <HotOffers resourcePath={"http://127.0.0.1:4001/hot-offer/1"} />
+      <HotOffers resourcePath={"http://127.0.0.1:4001/hot-offer/2"} />
     </Box>
   );
 }

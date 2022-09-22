@@ -14,9 +14,19 @@ import {
   Paper,
   ButtonBase,
   Container,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
-export default function HotOffers({ hotOffer }) {
+import { useQuery } from "@tanstack/react-query";
+export default function HotOffers({ swiperProps, resourcePath }) {
   const theme = useTheme();
+  const { data, isLoading, isSuccess } = useQuery(
+    [resourcePath],
+    async function () {
+      return fetch(resourcePath).then((res) => res.json());
+    },
+    { networkMode: "offlineFirst" }
+  );
   return (
     <Box
       sx={{
@@ -49,71 +59,81 @@ export default function HotOffers({ hotOffer }) {
               background: "transparent",
               borderRadius: 2,
             }}>
-            <SwiperContainer
-              gap={8}
-              breakpoints={{
-                1600: { slidesPerView: 5 },
-                1200: { slidesPerView: 4 },
-                900: {
-                  slidesPerView: 3,
-                },
-                700: {
-                  slidesPerView: 2,
-                },
-                600: {
-                  slidesPerView: 1,
-                },
-                0: {
-                  slidesPerView: 1,
-                },
-              }}
-              height={["100%", "100%", "100%", "100%"]}
-              slides={hotOffer.HotOffersOnProduct}
-              slidesPerView={6}
-              slideElement={({ product }, isActive = false, progress) => {
-                console.log("prog", progress);
-                return (
-                  <Card
-                    key={product.id}
-                    sx={{
-                      maxWidth: "100%",
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: 4,
-                      maxWidth: 345,
-                      position: "relative",
-                      transition: "all 0.4s",
-                    }}>
-                    <Link
-                      to={product.link}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        top: 0,
-                        left: 0,
-                        position: "absolute",
-                        zIndex: 10000,
-                      }}></Link>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={product.img}
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {product.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {product.description}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                );
-              }}
-            />
+            {isLoading ? (
+              <Backdrop>
+                <CircularProgress />
+              </Backdrop>
+            ) : (
+              data && (
+                <SwiperContainer
+                  gap={8}
+                  breakpoints={{
+                    1600: { slidesPerView: 5 },
+                    1200: { slidesPerView: 4 },
+                    900: {
+                      slidesPerView: 3,
+                    },
+                    700: {
+                      slidesPerView: 2,
+                    },
+                    600: {
+                      slidesPerView: 1,
+                    },
+                    0: {
+                      slidesPerView: 1,
+                    },
+                  }}
+                  height={["100%", "100%", "100%", "100%"]}
+                  slides={isSuccess && data[0].HotOffersOnProduct}
+                  slideElement={({ product }) => {
+                    return (
+                      <Card
+                        key={product.id}
+                        sx={{
+                          maxWidth: "100%",
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: 4,
+                          maxWidth: 345,
+                          position: "relative",
+                          transition: "all 0.4s",
+                        }}>
+                        <Link
+                          to={product.link}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            top: 0,
+                            left: 0,
+                            position: "absolute",
+                            zIndex: 10000,
+                          }}></Link>
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="140"
+                            image={product.img}
+                            alt="green iguana"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div">
+                              {product.name}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {product.description}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    );
+                  }}
+                  {...swiperProps}
+                />
+              )
+            )}
           </Paper>
         </Grid>
         <Grid
@@ -131,7 +151,7 @@ export default function HotOffers({ hotOffer }) {
           direction="column"
           alignItems={"center"}
           justifyContent={"space-around"}>
-          <Typography component={"h2"}>{hotOffer.title}</Typography>
+          <Typography component={"h2"}>{data && data.title}</Typography>
           <img
             height={"114px"}
             width={"114px"}
