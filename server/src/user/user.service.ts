@@ -11,6 +11,7 @@ export class UserService {
       include: { Order: true },
     });
     delete result.password;
+    delete result.refreshToken;
     return result;
   }
 

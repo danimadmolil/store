@@ -11,11 +11,12 @@ generator client {
 }
 
 model user {
-  id       Int     @id @default(autoincrement())
-  name     String  @unique
-  email    String  @unique
-  password String
-  Order    Order[]
+  id           Int     @id @default(autoincrement())
+  name         String  @unique
+  email        String  @unique
+  password     String
+  Order        Order[]
+  refreshToken String  @default("")
 }
 
 model Product {
