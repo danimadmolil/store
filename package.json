@@ -19,16 +19,16 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
+    "react-swipeable-views": "^0.14.0",
     "redux-saga": "^1.2.1",
     "smooth-scrollbar": "^8.7.5",
     "swiper": "^8.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "client": "react-scripts start",
+    "start": "react-scripts start",
     "server": "cd server & yarn start",
     "server:dev": "cd server & yarn start:dev",
-    "start:all": "yarn start & yarn server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

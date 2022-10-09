@@ -22,8 +22,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import GlobalSearch from "./GlobalSearch";
@@ -33,6 +32,7 @@ import TopLevelMenu from "./TopLevelMenu";
 import useBreakpoint from "../hooks/useBreakpoint";
 import SuperMenu from "./SuperMneu";
 import { display } from "@mui/system";
+import AuthButtonContainer from "../auth/components/AuthButtonContainer";
 
 const Navbar = styled(Box, { shouldForwardProp: (prop) => true })(
   ({ theme, open = false }) => ({
@@ -176,70 +176,7 @@ export default function Header() {
             },
           }}>
           {/**bag and auth button container */}
-          <Grid
-            className="bag_auth"
-            item
-            container
-            direction={"row"}
-            justifyContent={"space-between"}
-            sx={{
-              flexWrap: "nowrap",
-              marginRight: "auto",
-              width: "200px",
-              height: "44px",
-              position: "relative",
-              [theme.breakpoints.down("md")]: {
-                order: 2,
-                flexBasis: "100%",
-              },
-            }}>
-            <Link
-              to="/signin"
-              style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-              }}></Link>
-
-            <IconButton
-              sx={{
-                width: "44px",
-                height: "44px",
-                color: "black",
-                [theme.breakpoints.down("md")]: {
-                  order: 1,
-                },
-              }}>
-              <BusinessCenterIcon fontSize="large" />
-            </IconButton>
-            <Divider
-              sx={{ [theme.breakpoints.down("md")]: { display: "none" } }}
-              orientation="vertical"
-              flexItem
-            />
-            {/** register button */}
-
-            <Paper
-              elevation={0}
-              sx={{
-                borderRadius: "8px",
-                border: "1px solid #e0e0e2",
-                display: "flex",
-                width: "135px",
-                height: "40px",
-                padding: "6px 16px",
-                boxSizing: "border-box",
-                cursor: "pointer",
-                alignItems: "center",
-                fontSize: "13px",
-                [theme.breakpoints.down("md")]: {
-                  order: 2,
-                },
-              }}>
-              {"ورود | ثبت نام"}
-              <ExitToAppIcon />
-            </Paper>
-          </Grid>
+          <AuthButtonContainer />
           {/**search input container */}
           <GlobalSearch
             style={{

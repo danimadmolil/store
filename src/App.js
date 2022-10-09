@@ -13,6 +13,9 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import SmoothScrollbar from "smooth-scrollbar";
 import useBreakpoint from "./hooks/useBreakpoint";
+import SignIn from "./pages/SignIn.page";
+import SignUp from "./pages/SignUp.page";
+import ProfilePage from "./pages/Profile.page";
 function App() {
   const theme = useTheme();
   const scrollContainer = useRef();
@@ -44,8 +47,8 @@ function App() {
           <Router>
             <Routes>
               <Route index path="/" element={<Index />}></Route>
-              <Route path="/signIn" element={<Index />}></Route>
-              <Route path="/signOut" element={<Index />}></Route>
+              <Route path="/signIn" element={<SignIn />}></Route>
+              <Route path="/signOut" element={<SignUp />}></Route>
             </Routes>
           </Router>
         </Box>
