@@ -21,9 +21,9 @@ function App() {
   const scrollContainer = useRef();
   const screenSize = useBreakpoint();
   useEffect(() => {
-    SmoothScrollbar.init(scrollContainer.current, {
-      continuousScrolling: true,
-    });
+    // SmoothScrollbar.init(scrollContainer.current, {
+    //   continuousScrolling: true,
+    // });
   }, []);
 
   return (
