@@ -24,6 +24,8 @@ import {
   Comment,
   Edit,
   ListAlt,
+  MapOutlined,
+  MapRounded,
   Settings,
   Shop,
 } from "@mui/icons-material";
@@ -47,7 +49,7 @@ const menus = [
   { id: 1, title: "تنظیمات", link: "/profile/setting", icon: Settings },
   { id: 2, title: "لیست های من", link: "/profile/lists", icon: ListAlt },
   { id: 3, title: "دیدگاه ها", link: "/profile/comments", icon: Comment },
-  { id: 4, title: "سفارش ها", link: "/profile/orders", icon: Shop },
+  { id: 4, title: "ادرس ها", link: "/profile/orders", icon: MapOutlined },
 ];
 export default function ProfilePage() {
   const { user, updateUser } = useUser();
@@ -248,7 +250,8 @@ export default function ProfilePage() {
             variant="middle"
             component="li"
           />
-          <Stepper
+          {/**
+<Stepper
             connector={
               <span
                 style={{
@@ -294,13 +297,15 @@ export default function ProfilePage() {
               </StepContent>
             </Step>
           </Stepper>
+
+*/}
           <List>
             {menus.map((menu) => (
               <MenuItem sx={{ direction: "rtl" }} key={menu.id}>
                 <menu.icon>
                   <AddIcCallOutlined />
                 </menu.icon>
-                <ListItemText sx={{ textAlign: "right" }}>
+                <ListItemText sx={{ textAlign: "right", paddingRight: 2 }}>
                   <Link
                     to={menu.link}
                     style={{
