@@ -8,6 +8,8 @@ import SignIn from "./pages/SignIn.page";
 import SignUp from "./pages/SignUp.page";
 import ProfilePage from "./pages/Profile/Profile.page";
 import Comments from "./pages/Profile/subPages/Comments";
+import { connect } from "react-redux";
+import Setting from "./pages/Profile/subPages/Setting";
 
 const Body = styled(Box)(({ theme }) => ({
   background: theme.palette.background.default,
@@ -18,9 +20,9 @@ const Body = styled(Box)(({ theme }) => ({
   position: "relative",
 }));
 
-function App() {
+function App({ themeType }) {
   return (
-    <ThemeProvider theme={getTheme("light")}>
+    <ThemeProvider theme={getTheme(themeType)}>
       <Body className="App" sx={{}}>
         <Router>
           <Routes>
@@ -28,7 +30,7 @@ function App() {
             <Route path="/signIn" element={<SignIn />}></Route>
             <Route path="/signOut" element={<SignUp />}></Route>
             <Route path="/profile" element={<ProfilePage />}>
-              <Route path="/profile/setting"></Route>
+              <Route path="/profile/setting" element={<Setting />}></Route>
               <Route path="/profile/comments" element={<Comments />}></Route>
               <Route
                 path="*"
@@ -57,4 +59,9 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    themeType: state.theme.type,
+  };
+};
+export default connect(mapStateToProps, null)(App);
