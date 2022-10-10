@@ -1,59 +1,59 @@
-import Header from "./components/Header";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  ScrollRestoration,
-} from "react-router-dom";
-
-import Header2 from "./components/Header";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Index from "./pages/Index.page";
-import { Box, useTheme } from "@mui/material";
-import { useRef } from "react";
-import { useEffect } from "react";
-import SmoothScrollbar from "smooth-scrollbar";
-import useBreakpoint from "./hooks/useBreakpoint";
+import { Box, styled } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import getTheme from "./theme";
 import SignIn from "./pages/SignIn.page";
 import SignUp from "./pages/SignUp.page";
-import ProfilePage from "./pages/Profile.page";
-function App() {
-  const theme = useTheme();
-  const scrollContainer = useRef();
-  const screenSize = useBreakpoint();
-  useEffect(() => {
-    // SmoothScrollbar.init(scrollContainer.current, {
-    //   continuousScrolling: true,
-    // });
-  }, []);
+import ProfilePage from "./pages/Profile/Profile.page";
+import Comments from "./pages/Profile/subPages/Comments";
 
+const Body = styled(Box)(({ theme }) => ({
+  background: theme.palette.background.default,
+  maxWidth: "1920px",
+  width: "100vw",
+  minHeight: "100vh",
+  margin: "0 auto",
+  position: "relative",
+}));
+
+function App() {
   return (
-    <div
-      ref={scrollContainer}
-      style={{
-        margin: "0 auto",
-        height: "100vh",
-        width: "100vw",
-        maxWidth: "1920px",
-      }}>
-      <Box
-        className="App"
-        sx={{
-          maxWidth: "1920px",
-          width: "100vw",
-          margin: "0 auto",
-          position: "relative",
-        }}>
-        <Box>
-          <Router>
-            <Routes>
-              <Route index path="/" element={<Index />}></Route>
-              <Route path="/signIn" element={<SignIn />}></Route>
-              <Route path="/signOut" element={<SignUp />}></Route>
-            </Routes>
-          </Router>
-        </Box>
-      </Box>
-    </div>
+    <ThemeProvider theme={getTheme("light")}>
+      <Body className="App" sx={{}}>
+        <Router>
+          <Routes>
+            <Route index path="/" element={<Index />}></Route>
+            <Route path="/signIn" element={<SignIn />}></Route>
+            <Route path="/signOut" element={<SignUp />}></Route>
+            <Route path="/profile" element={<ProfilePage />}>
+              <Route path="/profile/setting"></Route>
+              <Route path="/profile/comments" element={<Comments />}></Route>
+              <Route
+                path="*"
+                element={
+                  <h1 style={{ textAlign: "center" }}>Not Found!</h1>
+                }></Route>
+            </Route>
+            <Route
+              path="*"
+              element={
+                <h1
+                  style={{
+                    display: "flex",
+                    width: "100vw",
+                    height: "100vh",
+                    textAlign: "center",
+                    justifyContent: "center",
+                  }}>
+                  Page Not Found!
+                </h1>
+              }></Route>
+          </Routes>
+        </Router>
+      </Body>
+    </ThemeProvider>
   );
 }
 

@@ -38,4 +38,14 @@ export class UserService {
     });
     return result;
   }
+  async getAllComments() {
+    return [
+      { id: 1, comment: 'comment 1' },
+      {
+        id: 1,
+        comment:
+          'من برای چنتا سیستم میخواستم قیمتشون مناسب بود.نمیدونم چرا موجود نمیشه یعنی دیجیکالا کلا دیگه fx6300 نداره یا میخوان ریزن هاشونو بفروشن',
+      },
+    ];
+  }
 }

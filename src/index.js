@@ -4,8 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./normalize.css";
 import "./assets/fonts/NotoSansArabic-Black.ttf";
-import { ThemeProvider } from "@mui/material";
-import theme from "./theme";
+
+
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "swiper/css";
@@ -20,10 +20,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <App />
-        <ReactQueryDevtools />
-      </ThemeProvider>
+      <App />
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </Provider>
 );

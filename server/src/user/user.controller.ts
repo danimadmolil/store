@@ -12,6 +12,10 @@ export class UserController {
   getMe(@Req() req: Request) {
     return this.userService.profile(req.user);
   }
+  @Get('comments')
+  getAllComments() {
+    return this.userService.getAllComments();
+  }
   @Post('update')
   editProfile(@Body() edit: UpdateUserDto, @Req() req: Request) {
     return this.userService.updateUser(req.user, edit);
