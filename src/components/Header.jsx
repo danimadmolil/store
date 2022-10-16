@@ -131,115 +131,116 @@ export default function Header() {
     setMenu((_menu) => !_menu);
   }
   return (
-    <Grid
-      container
-      sx={{
-        position: "relative",
-        top: 0,
-        left: 0,
-        boxSizing: "border-box",
-        padding: "0 28px",
-        justifyContent: "space-between",
-        height: "128px",
-        zIndex: "10000",
-        background: "white",
-        [theme.breakpoints.down("lg")]: {
-          padding: "0 28px",
-        },
-        [theme.breakpoints.up("md")]: {
-          flexDirection: "column",
-        },
-        [theme.breakpoints.between("xs", "md")]: {
-          height: "170px",
-        },
-      }}>
-      <Backdrop
+    <Paper>
+      <Grid
+        container
         sx={{
-          zIndex: 100,
-          display:
-            screenSize === "lg" || screenSize === "xl" || screenSize === "md"
-              ? "none"
-              : "absolute",
-        }}
-        open={menu}
-        onClick={toggleMenu}></Backdrop>
-      <HeaderTop>
-        <Grid
-          alignItems={"center"}
-          container
-          direction={"row"}
+          position: "relative",
+          top: 0,
+          left: 0,
+          boxSizing: "border-box",
+          padding: "0 28px",
+          justifyContent: "space-between",
+          height: "128px",
+          zIndex: "10",
+          [theme.breakpoints.down("lg")]: {
+            padding: "0 28px",
+          },
+          [theme.breakpoints.up("md")]: {
+            flexDirection: "column",
+          },
+          [theme.breakpoints.between("xs", "md")]: {
+            height: "170px",
+          },
+        }}>
+        <Backdrop
           sx={{
-            height: "auto",
-            width: "100%",
-            [theme.breakpoints.up("md")]: {
-              flexWrap: "nowrap",
-            },
-          }}>
-          {/**bag and auth button container */}
-          <AuthButtonContainer />
-          {/**search input container */}
-          <GlobalSearch
-            style={{
-              [theme.breakpoints.down("md")]: {
-                flexBasis: "100%",
-                order: 3,
-              },
-            }}
-          />
-          <Box
+            zIndex: 100,
+            display:
+              screenSize === "lg" || screenSize === "xl" || screenSize === "md"
+                ? "none"
+                : "absolute",
+          }}
+          open={menu}
+          onClick={toggleMenu}></Backdrop>
+        <HeaderTop>
+          <Grid
+            alignItems={"center"}
+            container
+            direction={"row"}
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              [theme.breakpoints.down("md")]: {
-                width: "100%",
-                padding: "8px 0",
-                order: 1,
+              height: "auto",
+              width: "100%",
+              [theme.breakpoints.up("md")]: {
+                flexWrap: "nowrap",
               },
             }}>
-            <Box sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}>
-              <QuestionAnswer />{" "}
-            </Box>
-            <img
-              className="brand"
+            {/**bag and auth button container */}
+            <AuthButtonContainer />
+            {/**search input container */}
+            <GlobalSearch
               style={{
-                paddingLeft: "23px",
-                width: "115px",
-                height: "30px",
-                objectFit: "cover",
+                [theme.breakpoints.down("md")]: {
+                  flexBasis: "100%",
+                  order: 3,
+                },
               }}
-              src="https://logos-world.net/wp-content/uploads/2020/11/Shopify-Logo.png"
             />
-            <Box sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}>
-              <IconButton
-                onClick={() => {
-                  toggleMenu();
-                }}>
-                <MenuOpen />
-              </IconButton>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                [theme.breakpoints.down("md")]: {
+                  width: "100%",
+                  padding: "8px 0",
+                  order: 1,
+                },
+              }}>
+              <Box sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}>
+                <QuestionAnswer />{" "}
+              </Box>
+              <img
+                className="brand"
+                style={{
+                  paddingLeft: "23px",
+                  width: "115px",
+                  height: "30px",
+                  objectFit: "cover",
+                }}
+                src="https://logos-world.net/wp-content/uploads/2020/11/Shopify-Logo.png"
+              />
+              <Box sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}>
+                <IconButton
+                  onClick={() => {
+                    toggleMenu();
+                  }}>
+                  <MenuOpen />
+                </IconButton>
+              </Box>
             </Box>
-          </Box>
-        </Grid>
-      </HeaderTop>
-      <Navbar sx={{ display: "flex", justifyContent: "end" }}>
-        <MenuItem
-          disableRipple
-          style={{ marginRight: "auto", display: "none" }}>
-          <Typography>{"لوکیشن"}</Typography>
-        </MenuItem>
+          </Grid>
+        </HeaderTop>
+        <Navbar sx={{ display: "flex", justifyContent: "end" }}>
+          <MenuItem
+            disableRipple
+            style={{ marginRight: "auto", display: "none" }}>
+            <Typography>{"لوکیشن"}</Typography>
+          </MenuItem>
 
-        <NavMenu open={menu} onWheel={(e) => e.stopPropagation()}>
-          <CustomMenuItem title={"تخفیف های ویژه"}></CustomMenuItem>
-          <CustomMenuItem title={"لباس مردانه"}></CustomMenuItem>
-          <CustomMenuItem title={"لباس زنانه"}></CustomMenuItem>
-          <SuperMenu
-            title="دسته بندی کالاها"
-            menus={categories}
-            subProperty={"subCategory"}
-          />
-        </NavMenu>
-      </Navbar>
-    </Grid>
+          <NavMenu open={menu} onWheel={(e) => e.stopPropagation()}>
+            <CustomMenuItem title={"تخفیف های ویژه"}></CustomMenuItem>
+            <CustomMenuItem title={"لباس مردانه"}></CustomMenuItem>
+            <CustomMenuItem title={"لباس زنانه"}></CustomMenuItem>
+            <SuperMenu
+              title="دسته بندی کالاها"
+              menus={categories}
+              subProperty={"subCategory"}
+            />
+          </NavMenu>
+        </Navbar>
+      </Grid>
+    </Paper>
   );
 }
 

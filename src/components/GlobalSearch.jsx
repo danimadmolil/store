@@ -34,7 +34,7 @@ export default function GlobalSearch({ style }) {
         width: "568px",
         height: "44px",
         justifyContent: "flex-end",
-        bgcolor: "#f0f0f1",
+        bgcolor: "background.default",
         overflow: open ? "visible" : "hidden",
         ...style,
       }}>
@@ -62,10 +62,10 @@ export default function GlobalSearch({ style }) {
               display: "flex",
               justifySelf: "flex-start",
               position: "relative",
-              width: "568px",
+              width: "100%",
               height: "44px",
               justifyContent: "flex-end",
-              bgcolor: open ? "white" : "#f0f0f1",
+              bgcolor: "background.default",
               [theme.breakpoints.down("md")]: {},
             }}>
             <AlignedTextInput

@@ -70,7 +70,8 @@ export default function SuperMenu({ title = "", menus, subProperty }) {
         <ListItemText>{title}</ListItemText>
       </MenuItem>
       {smallerThanMedium ? (
-        <Collapse
+        <Paper
+          component={Collapse}
           unmountOnExit
           orientation="vertical"
           onClick={(e) => e.stopPropagation()}
@@ -85,7 +86,6 @@ export default function SuperMenu({ title = "", menus, subProperty }) {
             display: "block",
             transform: "translateX(-50%)",
             borderRadius: "0 0px 8px 8px",
-            background: "white",
             right: 0,
             boxSizing: "border-box",
             zIndex: 10000,
@@ -104,7 +104,7 @@ export default function SuperMenu({ title = "", menus, subProperty }) {
             onClick={(e) => e.stopPropagation()}
             onMouseOver={handleDropDownMouseOver}
             onMouseLeave={handleDropDownMouseLeave}>
-            <Box
+            <Paper
               sx={{
                 height: "100%",
                 width: ["100%", "100%", "200px", "200px", "200px"],
@@ -129,27 +129,25 @@ export default function SuperMenu({ title = "", menus, subProperty }) {
                     />
                   ))}
               </List>
-            </Box>
+            </Paper>
           </Paper>
-        </Collapse>
+        </Paper>
       ) : (
         <Paper
           onClick={(e) => e.stopPropagation()}
           onMouseOver={handleDropDownMouseOver}
           onMouseLeave={handleDropDownMouseLeave}
           sx={{
-            width: "98vw",
-            maxWidth: "1920px",
+            width: "100%",
             height: "500px",
             top: "120px",
             left: "50%",
-            position: "fixed",
+            position: "absolute",
             overflow: "hidden",
             direction: "rtl",
             display: dropDown === false ? "none" : "block",
             transform: "translateX(-50%)",
             borderRadius: "0 0px 8px 8px",
-            background: "white",
             right: 0,
             boxSizing: "border-box",
             zIndex: 10000,
