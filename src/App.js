@@ -10,6 +10,7 @@ import ProfilePage from "./pages/Profile/Profile.page";
 import Comments from "./pages/Profile/subPages/Comments";
 import { connect } from "react-redux";
 import Setting from "./pages/Profile/subPages/Setting";
+import ProductPage from "./pages/Product/Product.page";
 
 const Body = styled(Box)(({ theme }) => ({
   background: theme.palette.background.default,
@@ -29,6 +30,7 @@ function App({ themeType }) {
             <Route index path="/" element={<Index />}></Route>
             <Route path="/signIn" element={<SignIn />}></Route>
             <Route path="/signOut" element={<SignUp />}></Route>
+            <Route path="/product/:productId" element={<ProductPage />}></Route>
             <Route path="/profile" element={<ProfilePage />}>
               <Route path="/profile/setting" element={<Setting />}></Route>
               <Route path="/profile/comments" element={<Comments />}></Route>

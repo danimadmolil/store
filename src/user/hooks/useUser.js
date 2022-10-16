@@ -81,6 +81,10 @@ export default function useUser() {
           deleteCredentialsCache();
           setRedirectToLogin(true);
           throw new Error("refresh token is expire");
+        } else if (res.status === 403) {
+          deleteCredentialsCache();
+          setRedirectToLogin(true);
+          throw new Error("refresh token is expire");
         }
       })
       .then((res) => {

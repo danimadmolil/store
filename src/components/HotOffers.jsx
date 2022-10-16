@@ -1,11 +1,11 @@
 import React from "react";
 import SwiperContainer from "./SwiperContiner";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
   CardMedia,
   Box,
-  Link,
   CardActionArea,
   CardContent,
   Typography,
@@ -99,7 +99,7 @@ export default function HotOffers({ swiperProps, resourcePath }) {
                           transition: "all 0.4s",
                         }}>
                         <Link
-                          to={product.link}
+                          to={`/product/${product.id}`}
                           style={{
                             width: "100%",
                             height: "100%",

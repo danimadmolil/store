@@ -11,20 +11,45 @@ generator client {
 }
 
 model user {
-  id           Int     @id @default(autoincrement())
-  name         String  @unique
-  email        String  @unique
-  password     String
-  Order        Order[]
-  refreshToken String  @default("")
+  id                 Int               @id @default(autoincrement())
+  name               String            @unique
+  email              String            @unique
+  password           String
+  Order              Order[]
+  Comments           CommentsOnProduc? @relation(fields: [commentsOnProducId], references: [id])
+  refreshToken       String            @default("")
+  commentsOnProducId Int               @default(-1)
+  Comment            Comment[]
+}
+
+model CommentsOnProduc {
+  id        Int     @id @default(autoincrement())
+  comment   Comment @relation(fields: [commentId], references: [id])
+  commentId Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  user      user[]
+}
+
+model Comment {
+  id               Int                @id @default(autoincrement())
+  comment          String
+  user             user?              @relation(fields: [userId], references: [id])
+  userId           Int?
+  CommentsOnProduc CommentsOnProduc[]
+  product          Product?           @relation(fields: [productId], references: [id])
+  productId        Int                @default(-1)
 }
 
 model Product {
   id                 Int                  @id @default(autoincrement())
+  image              String               @default("")
   name               String
   price              Float
   categories         CategoryOnProduct[]
   HotOffersOnProduct HotOffersOnProduct[]
+  CommentsOnProduc   CommentsOnProduc[]
+  Comment            Comment[]
 }
 
 model HotOffers {

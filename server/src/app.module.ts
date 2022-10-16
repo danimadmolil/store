@@ -9,6 +9,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     PrismaModule,
     JwtModule.register({}),
     UserModule,
+    ProductModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService],

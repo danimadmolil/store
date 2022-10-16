@@ -121,7 +121,6 @@ export default function Comments() {
     },
     { networkMode: "always" }
   );
-  console.log({ data });
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = React.useState(
@@ -174,55 +173,70 @@ export default function Comments() {
             ) : (
               <TabPanel value={value} index={1} dir={theme.direction}>
                 {data &&
-                  data.map((comment) => (
-                    <Grid
-                      sx={{ mt: 4, direction: "rtl", width: "100%" }}
-                      key={comment.id}
-                      wrap={"no-wrap"}
-                      container
-                      direction={"row"}>
-                      <Grid item xl={2} lg={2} md={2}>
-                        <img
-                          style={{ width: "63px", height: "75px" }}
-                          src={
-                            "https://dkstatics-public.digikala.com/digikala-products/2454987.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80"
-                          }
-                        />
-                        <Badge
-                          sx={{ display: "flex", alignSelf: "flex-end" }}
-                          badgeContent={4}
-                          color="success"
-                        />
-                      </Grid>
+                  data.map((comment) => {
+                    return (
                       <Grid
+                        sx={{ mt: 4, direction: "rtl", width: "100%" }}
+                        key={comment.id}
+                        wrap={"no-wrap"}
                         container
-                        item
-                        xl={10}
-                        lg={10}
-                        md={10}
-                        direction={"column"}>
-                        <Grid
-                          container
-                          alignItems={"center"}
-                          justifyContent="end"
-                          sx={{ height: "40px" }}>
-                          <ListMenu
-                            sx={{ color: "secondary" }}
-                            menuItems={[
-                              { id: 1, title: "Edit", icon: Edit },
-                              { id: 2, title: "delete", icon: Delete },
-                            ]}
+                        direction={"row"}>
+                        <Grid item xl={2} lg={2} md={2}>
+                          <Box
+                            component={"img"}
+                            sx={{
+                              width: "63px",
+                              height: "75px",
+                              objectFit: "cover",
+                              [theme.breakpoints.up("md")]: {
+                                width: "80px",
+                                height: "80px",
+                                borderRadius: "2px",
+                              },
+                              [theme.breakpoints.up("lg")]: {
+                                width: "130px",
+                                height: "130px",
+                                borderRadius: "3px",
+                              },
+                            }}
+                            src={comment.product && comment.product.image}
+                          />
+                          <Badge
+                            sx={{ display: "flex", alignSelf: "flex-end" }}
+                            badgeContent={4}
+                            color="success"
                           />
                         </Grid>
-                        <Divider variant="middle" />
-                        <Box sx={{ height: "auto", padding: "10px 5px" }}>
-                          <Typography>{comment.comment}</Typography>
-                        </Box>
-                        <Divider variant="middle" />
-                        <Box style={{ height: "20px" }}></Box>
+                        <Grid
+                          container
+                          item
+                          xl={10}
+                          lg={10}
+                          md={10}
+                          direction={"column"}>
+                          <Grid
+                            container
+                            alignItems={"center"}
+                            justifyContent="end"
+                            sx={{ height: "40px" }}>
+                            <ListMenu
+                              sx={{ color: "secondary" }}
+                              menuItems={[
+                                { id: 1, title: "Edit", icon: Edit },
+                                { id: 2, title: "delete", icon: Delete },
+                              ]}
+                            />
+                          </Grid>
+                          <Divider variant="middle" />
+                          <Box sx={{ height: "auto", padding: "10px 5px" }}>
+                            <Typography>{comment.comment}</Typography>
+                          </Box>
+                          <Divider variant="middle" />
+                          <Box style={{ height: "20px" }}></Box>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  ))}
+                    );
+                  })}
               </TabPanel>
             )}
           </SwipeableViews>

@@ -8,7 +8,9 @@ export class UserService {
   async profile(user: any) {
     const result = await this.prisma.user.findUnique({
       where: { email: user.email },
-      include: { Order: true },
+      include: {
+        Order: true,
+      },
     });
     delete result.password;
     delete result.refreshToken;
@@ -38,14 +40,12 @@ export class UserService {
     });
     return result;
   }
-  async getAllComments() {
-    return [
-      { id: 1, comment: 'comment 1' },
-      {
-        id: 1,
-        comment:
-          'من برای چنتا سیستم میخواستم قیمتشون مناسب بود.نمیدونم چرا موجود نمیشه یعنی دیجیکالا کلا دیگه fx6300 نداره یا میخوان ریزن هاشونو بفروشن',
-      },
-    ];
+  async getAllComments(user: any) {
+    const comments = await this.prisma.comment.findMany({
+      where: { userId: user.id },
+      include: { product: true },
+    });
+
+    return comments;
   }
 }

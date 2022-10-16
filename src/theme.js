@@ -3,6 +3,7 @@ import { createTheme, getInitColorSchemeScript } from "@mui/material";
 export default function getTheme(type) {
   if (type === "dark") {
     return createTheme({
+      direction: "rtl",
       palette: {
         type: "dark",
         primary: {

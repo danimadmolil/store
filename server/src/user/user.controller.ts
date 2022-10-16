@@ -13,8 +13,8 @@ export class UserController {
     return this.userService.profile(req.user);
   }
   @Get('comments')
-  getAllComments() {
-    return this.userService.getAllComments();
+  getAllComments(@Req() req: Request) {
+    return this.userService.getAllComments(req.user);
   }
   @Post('update')
   editProfile(@Body() edit: UpdateUserDto, @Req() req: Request) {
