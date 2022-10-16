@@ -1,30 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Link,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import {
   Box,
   Breadcrumbs,
   Button,
-  Checkbox,
   createStyles,
   Divider,
   Grid,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  makeStyles,
   Paper,
   Radio,
   RadioGroup,
   styled,
-  Tab,
-  Tabs,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -77,7 +65,7 @@ const colorVariants = [
 ];
 export default function ProductPage() {
   const { productId, ...rest } = useParams();
-  const { data, isLoading, isFetching } = useQuery(
+  const { data } = useQuery(
     ["product", productId],
     async () => {
       return fetch(`http://localhost:4001/product/${productId}`).then((res) => {
@@ -93,7 +81,6 @@ export default function ProductPage() {
   );
   const { colorVariant, setColorVariant } = useState("");
   const theme = useTheme();
-  const navigator = useNavigate();
   console.log({ rest });
   // console.log({ theme: theme.palette.background.paper });
   return (
@@ -216,7 +203,6 @@ export default function ProductPage() {
               height: "auto",
               paddingRight: "17px",
               paddingBottom: "12px",
-              display: "block",
               display: "flex",
               flexFlow: "column",
               [theme.breakpoints.down("md")]: {

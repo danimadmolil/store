@@ -1,8 +1,6 @@
+import React from "react";
 import { Box, useTheme } from "@mui/material";
 import * as ReactDOMServer from "react-dom/server";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
 import SwiperContainer from "../components/SwiperContiner";
 import server from "../server.json";
 import HotOffers from "../components/HotOffers";
@@ -57,7 +55,6 @@ export default function Home() {
                   }}></div>
               );
             },
-            clickable: true,
           }}
           slidesPerView={1}
           slideElement={(slide) => (
@@ -68,7 +65,11 @@ export default function Home() {
                 height: "100%",
                 overflow: "hidden",
               }}>
-              <img style={{ width: "100%", height: "100%" }} src={slide.img} />
+              <img
+                alt=""
+                style={{ width: "100%", height: "100%" }}
+                src={slide.img}
+              />
             </div>
           )}
         />

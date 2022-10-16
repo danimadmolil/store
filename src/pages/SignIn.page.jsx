@@ -10,10 +10,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constatnts";
-import { setItem, setItemWithExpire } from "../utils/localStorage";
+import { setItemWithExpire } from "../utils/localStorage";
 import { setUser } from "../auth/auth.slice";
 import { useDispatch } from "react-redux";
 export default function SignIn() {
@@ -36,7 +35,7 @@ export default function SignIn() {
         if (res.ok) {
           return res.json();
         } else {
-          throw { error: "failed to signin" };
+          throw new Error("failed to signin");
         }
       })
       .then((res) => {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
@@ -6,7 +6,6 @@ import { Badge, Button, Grid, ListItemText, Paper } from "@mui/material";
 import {
   useTheme,
   Tooltip,
-  Typography,
   IconButton,
   Divider,
   ListItemIcon,
@@ -20,12 +19,8 @@ import { deleteCredentialsCache } from "../../utils/localStorage";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Delete,
-  Shop2TwoTone,
   ShoppingCart,
-  ViewAgenda,
-  ViewAgendaOutlined,
   Visibility,
-  Watch,
 } from "@mui/icons-material";
 
 export default function AuthMenu() {

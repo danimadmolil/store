@@ -1,4 +1,4 @@
-import { createTheme, getInitColorSchemeScript } from "@mui/material";
+import { createTheme } from "@mui/material";
 
 export default function getTheme(type) {
   if (type === "dark") {

@@ -1,24 +1,10 @@
-import React, { Children, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
-  ButtonBase,
-  ClickAwayListener,
   Collapse,
-  Divider,
-  Grid,
-  IconButton,
-  InputBase,
-  List,
   ListItem,
-  ListItemButton,
   ListItemText,
-  Menu,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
   styled,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -26,11 +12,7 @@ import Dropdown from "./Dropdown";
 import useBreakpoint from "../hooks/useBreakpoint";
 import "./TopLevelMenu.css";
 import { Link } from "react-router-dom";
-import {
-  ArrowDropDown,
-  ArrowDropDownRounded,
-  ArrowDropUpRounded,
-} from "@mui/icons-material";
+import { ArrowDropDownRounded, ArrowDropUpRounded } from "@mui/icons-material";
 const CustomListItem = styled(ListItem)(({ theme }) => ({
   maxWidth: "100px",
   padding: 0,

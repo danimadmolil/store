@@ -1,35 +1,21 @@
 import React, { useState } from "react";
 import {
-  ArrowDropDown,
   ArrowDropDownRounded,
-  ArrowDropUp,
   ArrowDropUpRounded,
   ArrowLeft,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import {
-  Box,
   Collapse,
   Divider,
   ListItem,
-  ListItemButton,
   ListItemText,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import "./Dropdown.css";
 import useBreakpoint from "../hooks/useBreakpoint";
 
 export default function Dropdown({ children, title = "title", subs }) {
-  const theme = useTheme();
   const [collapse, setCollapse] = useState(false);
-  const xs = useMediaQuery(theme.breakpoints.down("xs"));
-  const sm = useMediaQuery(theme.breakpoints.down("sm"));
-  const md = useMediaQuery(theme.breakpoints.down("md"));
-  const lg = useMediaQuery(theme.breakpoints.down("lg"));
-  const xl = useMediaQuery(theme.breakpoints.up("lg"));
   let currentBr = useBreakpoint();
 
   function handleCollapse(e) {
@@ -107,15 +93,5 @@ export default function Dropdown({ children, title = "title", subs }) {
     </React.Fragment>
   );
 
-  {
-    /**
-    <MenuItem
-      sx={{ display: "flex", flexDirection: "column" }}
-      onClick={handleCollapse}>
-      <Collapse in={collapse} appear={true}>
-        {children}
-      </Collapse>
-    </MenuItem>
-     */
-  }
+ 
 }

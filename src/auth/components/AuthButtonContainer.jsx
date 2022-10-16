@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Grid,
   Paper,
@@ -12,16 +12,11 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import AuthMenu from "./AuthMenu";
-import useAuthQuery from "../../hooks/useAuthQuery";
-import { connect } from "react-redux";
-import { isError, useQueries } from "@tanstack/react-query";
-import { BASE_URL } from "../../utils/constatnts";
-import { getItemWithExpire, setItemWithExpire } from "../../utils/localStorage";
 import { Person } from "@mui/icons-material";
 import useUser from "../../user/hooks/useUser";
 export default function AuthButtonContainer() {
   const theme = useTheme();
-  const { isLoading, user, updateUser, isError } = useUser();
+  const { isLoading, user, isError } = useUser();
 
   return isLoading ? (
     <Grid

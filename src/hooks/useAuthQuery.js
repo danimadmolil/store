@@ -1,10 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
   deleteCredentialsCache,
   getItemWithExpire,
-  removeItem,
   setItemWithExpire,
 } from "../utils/localStorage";
 

@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import {
-  ButtonBase,
   ClickAwayListener,
-  Divider,
-  Grid,
-  IconButton,
   InputBase,
   Paper,
   styled,

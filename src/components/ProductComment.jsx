@@ -1,4 +1,4 @@
-import { Badge, Divider, Grid, IconButton, Typography } from "@mui/material";
+import { Divider, Grid, IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import Tag from "./Tag";
@@ -7,7 +7,6 @@ import {
   BadgeRounded,
   Circle,
   MenuRounded,
-  SwapVerticalCircleSharp,
   ThumbUp,
 } from "@mui/icons-material";
 export default function ProductComment({

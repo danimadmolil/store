@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Avatar,
   Box,
@@ -9,42 +8,34 @@ import {
   ListItemText,
   MenuItem,
   Paper,
-  Step,
-  StepContent,
-  StepLabel,
-  Stepper,
-  styled,
   Typography,
   useTheme,
   Stack,
 } from "@mui/material";
 import {
   AddIcCallOutlined,
-  CircleRounded,
   Comment,
   Edit,
   ListAlt,
   MapOutlined,
-  MapRounded,
   Settings,
-  Shop,
 } from "@mui/icons-material";
 import useUser from "../../user/hooks/useUser";
 import { Link, Outlet } from "react-router-dom";
 
-const DirectionalStepLabel = styled(StepLabel, {
-  shouldForwardProp: (prop) => true,
-})(({ theme, ...props }) => ({
-  ".MuiStepLabel-label": {
-    textAlign: props.direction
-      ? props.direction === "rtl"
-        ? "start"
-        : "end"
-      : "end",
-    marginRight: props.mr,
-    marginLeft: props.ml,
-  },
-}));
+// const DirectionalStepLabel = styled(StepLabel, {
+//   shouldForwardProp: (prop) => true,
+// })(({ theme, ...props }) => ({
+//   ".MuiStepLabel-label": {
+//     textAlign: props.direction
+//       ? props.direction === "rtl"
+//         ? "start"
+//         : "end"
+//       : "end",
+//     marginRight: props.mr,
+//     marginLeft: props.ml,
+//   },
+// }));
 const menus = [
   { id: 1, title: "تنظیمات", link: "/profile/setting", icon: Settings },
   { id: 2, title: "لیست های من", link: "/profile/lists", icon: ListAlt },
@@ -52,7 +43,7 @@ const menus = [
   { id: 4, title: "ادرس ها", link: "/profile/orders", icon: MapOutlined },
 ];
 export default function ProfilePage() {
-  const { user, updateUser } = useUser();
+  const { user } = useUser();
   const theme = useTheme();
   return (
     <Grid
@@ -128,6 +119,7 @@ export default function ProfilePage() {
             <Box disableRipple sx={{ width: "90px", height: "90px" }}>
               <Box sx={{ width: "100%", height: "80%" }}>
                 <img
+                  alt=""
                   style={{
                     width: "100%",
                     height: "100%",
@@ -145,6 +137,7 @@ export default function ProfilePage() {
             <Box disableRipple sx={{ width: "90px", height: "90px" }}>
               <Box sx={{ width: "100%", height: "80%" }}>
                 <img
+                  alt=""
                   style={{
                     width: "100%",
                     height: "100%",
@@ -162,6 +155,7 @@ export default function ProfilePage() {
             <Box disableRipple sx={{ width: "90px", height: "90px" }}>
               <Box sx={{ width: "100%", height: "80%" }}>
                 <img
+                  alt=""
                   style={{
                     width: "100%",
                     height: "100%",

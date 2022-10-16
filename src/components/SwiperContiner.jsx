@@ -5,8 +5,6 @@ import { style } from "@mui/system";
 import {
   Navigation,
   Pagination,
-  Scrollbar,
-  A11y,
   Autoplay,
   FreeMode,
   Zoom,

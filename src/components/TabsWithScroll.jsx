@@ -80,7 +80,7 @@ export default function TabsWithScroll({ tabs = [], ...rest }) {
     };
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
-  }, []);
+  }, [tabs]);
   return (
     <Box sx={{ width: "100%" }} ref={placeHolder}>
       <Tabs

@@ -3,7 +3,6 @@ import SwiperContainer from "./SwiperContiner";
 import { Link } from "react-router-dom";
 import {
   Card,
-  CardHeader,
   CardMedia,
   Box,
   CardActionArea,
@@ -13,7 +12,6 @@ import {
   Grid,
   Paper,
   ButtonBase,
-  Container,
   Backdrop,
   CircularProgress,
 } from "@mui/material";
@@ -90,7 +88,6 @@ export default function HotOffers({ swiperProps, resourcePath }) {
                       <Card
                         key={product.id}
                         sx={{
-                          maxWidth: "100%",
                           width: "100%",
                           height: "100%",
                           borderRadius: 4,
@@ -153,6 +150,7 @@ export default function HotOffers({ swiperProps, resourcePath }) {
           justifyContent={"space-around"}>
           <Typography component={"h2"}>{data && data.title}</Typography>
           <img
+            alt=""
             height={"114px"}
             width={"114px"}
             src="https://www.digikala.com/statics/img/png/specialCarousel/box.png"

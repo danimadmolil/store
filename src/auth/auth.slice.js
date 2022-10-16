@@ -1,4 +1,4 @@
-import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 import { getItemWithExpire } from "../utils/localStorage";
 const initialState = getItemWithExpire("auth") || {};
 //actions

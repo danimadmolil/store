@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  AppBar,
   Box,
-  Button,
   Divider,
   Paper,
   styled,
@@ -12,27 +10,15 @@ import {
   useTheme,
   Grid,
   Badge,
+  Stack,
   CircularProgress,
 } from "@mui/material";
-import {
-  BrowserRouter as Router,
-  Link,
-  Navigate,
-  Route,
-  Routes,
-  ScrollRestoration,
-  useNavigate,
-  useNavigation,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SwipeableViews from "react-swipeable-views";
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import usePostQuery from "../../../user/hooks/usePostQuery";
 import { BASE_URL } from "../../../utils/constatnts";
-import useUser from "../../../user/hooks/useUser";
-import { getItem, getItemWithExpire } from "../../../utils/localStorage";
-import { Stack } from "@mui/system";
+import { getItemWithExpire } from "../../../utils/localStorage";
+
 import ListMenu from "../../../components/ListMenu";
 import { Delete, Edit } from "@mui/icons-material";
 const AntTab = styled((props) => <Tab disableRipple {...props} />)(
@@ -62,7 +48,6 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
       opacity: 1,
     },
     "&.Mui-selected": {
-      color: theme.palette.primary.main,
       color: theme.palette.primary.main,
     },
     "&.Mui-focusVisible": {
@@ -104,7 +89,7 @@ function calculateInitialIndex(selectedTab, defaultIndex = 0) {
   return initialIndex;
 }
 export default function Comments() {
-  const { data, isError, isLoading, isFetching } = usePostQuery(
+  const { data,isLoading } = usePostQuery(
     ["comments"],
     function () {
       return fetch(BASE_URL + "/user/comments", {
@@ -122,7 +107,7 @@ export default function Comments() {
     { networkMode: "always" }
   );
   const theme = useTheme();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [value, setValue] = React.useState(
     calculateInitialIndex(searchParams.get("activeTab"))
   );

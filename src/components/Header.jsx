@@ -1,37 +1,21 @@
-import React, { Children, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Backdrop,
   Box,
-  ButtonBase,
-  ClickAwayListener,
-  Collapse,
-  Divider,
   Grid,
   IconButton,
-  InputBase,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Menu,
   MenuItem,
   Paper,
-  Select,
   styled,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import GlobalSearch from "./GlobalSearch";
-import Dropdown from "./Dropdown";
 import { MenuOpen, QuestionAnswer } from "@mui/icons-material";
-import TopLevelMenu from "./TopLevelMenu";
 import useBreakpoint from "../hooks/useBreakpoint";
 import SuperMenu from "./SuperMneu";
-import { display } from "@mui/system";
 import AuthButtonContainer from "../auth/components/AuthButtonContainer";
 
 const Navbar = styled(Box, { shouldForwardProp: (prop) => true })(
@@ -201,6 +185,7 @@ export default function Header() {
                 <QuestionAnswer />{" "}
               </Box>
               <img
+                alt=""
                 className="brand"
                 style={{
                   paddingLeft: "23px",

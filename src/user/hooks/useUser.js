@@ -1,10 +1,9 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   getItemWithExpire,
-  getItem,
   setItem,
   setItemWithExpire,
   deleteCredentialsCache,
@@ -19,9 +18,6 @@ function getTokens() {
   return [accessToken, refreshToken];
 }
 
-function getUserFromLocalStorage() {
-  return getItemWithExpire("user");
-}
 export default function useUser() {
   const [user, setUser] = useState(null);
   const navigator = useNavigate();
@@ -32,7 +28,7 @@ export default function useUser() {
     if (redirectToLogin === true) {
       navigator({ pathname: "/signin" });
     }
-  }, [redirectToLogin]);
+  }, [redirectToLogin, navigator]);
   useEffect(() => {
     if (!user) {
       //check if user is in localStorage
@@ -44,7 +40,6 @@ export default function useUser() {
     }
   }, [user]);
   const {
-    data,
     status,
     isFetching,
     isError,
@@ -64,7 +59,7 @@ export default function useUser() {
   });
 
   function refreshToken() {
-    const [accessToken, refreshToken] = getTokens();
+    const [, refreshToken] = getTokens();
     if (!refreshToken) {
       setRedirectToLogin(true);
       // throw new Error("user not authenticated (access token is not present)");
