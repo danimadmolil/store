@@ -82,7 +82,7 @@ export default function HotOffers({ swiperProps, resourcePath }) {
                     },
                   }}
                   height={["100%", "100%", "100%", "100%"]}
-                  slides={isSuccess && data[0].HotOffersOnProduct}
+                  slides={isSuccess && data[0] && data[0].HotOffersOnProduct}
                   slideElement={({ product }) => {
                     return (
                       <Card
