@@ -11,34 +11,23 @@ generator client {
 }
 
 model user {
-  id                 Int               @id @default(autoincrement())
-  name               String            @unique
-  email              String            @unique
-  password           String
-  Order              Order[]
-  Comments           CommentsOnProduc? @relation(fields: [commentsOnProducId], references: [id])
-  refreshToken       String            @default("")
-  commentsOnProducId Int               @default(-1)
-  Comment            Comment[]
-}
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  email    String  @unique
+  password String
+  Order    Order[]
 
-model CommentsOnProduc {
-  id        Int     @id @default(autoincrement())
-  comment   Comment @relation(fields: [commentId], references: [id])
-  commentId Int
-  product   Product @relation(fields: [productId], references: [id])
-  productId Int
-  user      user[]
+  refreshToken String    @default("")
+  Comment      Comment[]
 }
 
 model Comment {
-  id               Int                @id @default(autoincrement())
-  comment          String
-  user             user?              @relation(fields: [userId], references: [id])
-  userId           Int?
-  CommentsOnProduc CommentsOnProduc[]
-  product          Product?           @relation(fields: [productId], references: [id])
-  productId        Int                @default(-1)
+  id        Int      @id @default(autoincrement())
+  comment   String
+  user      user?    @relation(fields: [userId], references: [id])
+  userId    Int?
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int      @default(-1)
 }
 
 model Product {
@@ -48,8 +37,8 @@ model Product {
   price              Float
   categories         CategoryOnProduct[]
   HotOffersOnProduct HotOffersOnProduct[]
-  CommentsOnProduc   CommentsOnProduc[]
   Comment            Comment[]
+  ProductOnOrder     ProductOnOrder[]
 }
 
 model HotOffers {
@@ -90,9 +79,21 @@ model CategoryOnProduct {
 }
 
 model Order {
-  id     Int  @id @default(autoincrement())
-  userId Int
-  user   user @relation(fields: [userId], references: [id])
+  id             Int              @id @default(autoincrement())
+  userId         Int
+  user           user             @relation(fields: [userId], references: [id])
+  ProductOnOrder ProductOnOrder[]
+  status         String           @default("pending")
+}
+
+model ProductOnOrder {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+
+  @@unique([orderId, productId])
 }
 
 model Session {

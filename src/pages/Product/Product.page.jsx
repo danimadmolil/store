@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import {
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Breadcrumbs,
   Button,
+  CircularProgress,
+  ClickAwayListener,
   createStyles,
   Divider,
+  FormLabel,
   Grid,
   IconButton,
+  Input,
+  MenuItem,
   Paper,
   Radio,
   RadioGroup,
+  Select,
   styled,
+  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import {
   Add,
+  ArrowDropDown,
   ChatBubbleRounded,
   CircleSharp,
   DeliveryDining,
@@ -29,9 +41,11 @@ import {
 } from "@mui/icons-material";
 import TabsWithScroll from "../../components/TabsWithScroll";
 import Price from "../../components/Price";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ProductComment from "../../components/ProductComment";
 import BulletDivider from "../../components/BulletDivider";
+import { postRequest } from "../../auth/service/request";
+import useUser from "../../user/hooks/useUser";
 const ProductContainer = styled(Box)(({ theme }) => ({
   maxWidth: "1151px",
   height: "auto",
@@ -79,10 +93,36 @@ export default function ProductPage() {
     },
     { networkMode: "always" }
   );
+  const mutation = useMutation(
+    (data) => {
+      return postRequest("http://localhost:4001/product/comment", {
+        body: {
+          productId,
+          comment: data,
+        },
+      });
+    },
+    {
+      onSuccess(a, b, c) {
+        qc.invalidateQueries(["product", productId]);
+      },
+      networkMode: "always",
+    }
+  );
+  const [commentAccordion, setCommentAccordion] = useState(false);
+  function toggleCommentAccordion() {
+    setCommentAccordion((prevState) => !prevState);
+  }
+
   const { colorVariant, setColorVariant } = useState("");
   const theme = useTheme();
   console.log({ rest });
-  // console.log({ theme: theme.palette.background.paper });
+  const commentInputRef = useRef(null);
+  const qc = useQueryClient();
+  function submitComment() {
+    mutation.mutate(commentInputRef.current.value);
+  }
+
   return (
     <ProductContainer>
       <Header />
@@ -551,6 +591,9 @@ export default function ProductPage() {
           بیشتر
         </Link>
       </Paper>
+      {/*
+            users comments
+        */}
       <Grid
         component={Paper}
         id={"reviews"}
@@ -561,10 +604,16 @@ export default function ProductPage() {
           padding: "4px 17px",
           paddingBottom: "28px",
         }}>
+        {/**
+        comment section header
+      */}
         <Grid
           sx={{ marginBottom: "22px" }}
           container
           className="submit_comment">
+          {/**
+          comment section header left side
+      */}
           <Grid
             className="comment_header-left"
             xl={9}
@@ -587,6 +636,9 @@ export default function ProductPage() {
               {"مشاهده همه"}
             </Link>
           </Grid>
+          {/**
+          comment section header right side
+      */}
           <Grid
             className="comment_header-right"
             container
@@ -639,6 +691,7 @@ export default function ProductPage() {
               {"شما هم درباره این کالا دیدگاه ثبت کنید"}
             </Typography>
             <Button
+              onClick={toggleCommentAccordion}
               fullWidth
               variant="outlined"
               color="primary"
@@ -647,7 +700,24 @@ export default function ProductPage() {
             </Button>
           </Grid>
         </Grid>
+        <Accordion expanded={commentAccordion}>
+          <AccordionSummary></AccordionSummary>
+          <AccordionDetails sx={{ background: "gray" }}>
+            <FormLabel>comment :</FormLabel>
+            <Input
+              inputRef={commentInputRef}
+              id="input"
+              name="comment"
+              type="text"
+            />
+
+            <Button variant="contained" onClick={submitComment}>
+              ثبت
+            </Button>
+          </AccordionDetails>
+        </Accordion>
         <Grid container>
+          {mutation.isLoading && <CircularProgress sx={{ margin: "0 auto" }} />}
           <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
             {data &&
               data.Comment.map((comment) => {

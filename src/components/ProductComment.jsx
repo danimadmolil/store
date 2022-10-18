@@ -1,4 +1,4 @@
-import { Divider, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import Tag from "./Tag";
@@ -9,6 +9,7 @@ import {
   MenuRounded,
   ThumbUp,
 } from "@mui/icons-material";
+
 export default function ProductComment({
   comment,
   user,
@@ -58,9 +59,7 @@ export default function ProductComment({
             پیشنهاد میکنم
           </Typography>
         </Stack>
-        <Typography sx={{ padding: "25px 0" }}>
-          عالی ممنون از دیجی کالا
-        </Typography>
+        <Typography sx={{ padding: "25px 0" }}>{comment}</Typography>
         <Divider />
         <Stack
           direction={"row"}
@@ -72,7 +71,7 @@ export default function ProductComment({
           <Circle sx={{ color: variant.color }} />
         </Stack>
       </Grid>
-      <Divider />
+      <Divider sx={{ marginTop: "44px", marginBottom: "18px" }} />
     </Grid>
   );
 }

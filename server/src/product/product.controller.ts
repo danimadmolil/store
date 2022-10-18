@@ -1,7 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 
 @Controller('product')
 export class ProductController {
@@ -16,7 +28,7 @@ export class ProductController {
   findAll() {
     return this.productService.findAll();
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productService.findOne(+id);
@@ -30,5 +42,14 @@ export class ProductController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productService.remove(+id);
+  }
+  @Post('comment')
+  @UseGuards(AuthGuard('jwt'))
+  createComment(@Req() req: Request) {
+    // return { user: req.user, body: req.body.comment };
+    return this.productService.addComment(
+      req.user,
+      req.body
+    );
   }
 }

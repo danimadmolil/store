@@ -1,11 +1,18 @@
-import { getItem } from "../../utils/localStorage";
+import { getItemWithExpire } from "../../utils/localStorage";
 export async function postRequest(path, payload) {
-  return fetch(path, { method: "post", body: { ...payload } }).then((res) => {
+  return fetch(path, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getItemWithExpire("accessToken"),
+    },
+    body: JSON.stringify(payload),
+  }).then((res) => {
     if (res.status === 401) {
       //unAuthenticated
       fetch("http://localhost:4001/auth/refresh", {
         headers: {
-          Authorization: "Bearer " + getItem("auth")?.refreshToken,
+          Authorization: "Bearer " + getItemWithExpire("accessToken"),
         },
       });
     }
