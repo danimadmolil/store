@@ -19,9 +19,6 @@ import { deleteCredentialsCache } from "../../utils/localStorage";
 import { useQueryClient } from "@tanstack/react-query";
 import { Delete, ShoppingCart, Visibility } from "@mui/icons-material";
 import useOrderQuery from "../../user/hooks/useOrderQuery";
-  ShoppingCart,
-  Visibility,
-} from "@mui/icons-material";
 
 export default function AuthMenu() {
   const [shoppingCartRef, setShoppingCartRef] = useState(null);
