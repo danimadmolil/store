@@ -29,7 +29,7 @@ function App({ themeType }) {
           <Routes>
             <Route index path="/" element={<Index />}></Route>
             <Route path="/signIn" element={<SignIn />}></Route>
-            <Route path="/signOut" element={<SignUp />}></Route>
+            <Route path="/signUp" element={<SignUp />}></Route>
             <Route path="/product/:productId" element={<ProductPage />}></Route>
             <Route path="/profile" element={<ProfilePage />}>
               <Route path="/profile/setting" element={<Setting />}></Route>

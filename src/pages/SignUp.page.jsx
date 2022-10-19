@@ -24,15 +24,14 @@ export default function SignUp() {
     const password = data.get("password");
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
-    fetch(`${BASE_URL}/signup`, {
+    fetch(`${BASE_URL}/auth/signup`, {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: email,
         password: password,
         name: firstName + " " + lastName,
       }),
-      method: "POST",
-      credentials: "include",
+      method: "post",
     })
       .then((res) => res.json())
       .then((res) => {
