@@ -1,12 +1,15 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { getItemWithExpire } from "../utils/localStorage";
-const initialState = getItemWithExpire("auth") || {};
-//actions
-export const setUser = createAction("auth/setUser");
-//reducer
-const reducer = createReducer(initialState, (builder) => {
-  builder.addCase(setUser, (state, action) => {
-    return (state = action.payload);
-  });
+const initialState = getItemWithExpire("user") || {};
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    setUser: (state, action) => {
+      return { ...action.payload };
+    },
+  },
 });
-export default reducer;
+
+export const { setUser } = authSlice.actions;
+export default authSlice.reducer;
