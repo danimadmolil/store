@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
@@ -17,14 +17,15 @@ import {
 import { Link } from "react-router-dom";
 import { deleteCredentialsCache } from "../../utils/localStorage";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  Delete,
+import { Delete, ShoppingCart, Visibility } from "@mui/icons-material";
+import useOrderQuery from "../../user/hooks/useOrderQuery";
   ShoppingCart,
   Visibility,
 } from "@mui/icons-material";
 
 export default function AuthMenu() {
   const [shoppingCartRef, setShoppingCartRef] = useState(null);
+  const { data, isLoading, isFetching, isError } = useOrderQuery();
   const qc = useQueryClient();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -224,7 +225,7 @@ export default function AuthMenu() {
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        badgeContent={2}
+        badgeContent={data?.ProductOnOrder?.length}
         color={"primary"}>
         <Avatar variant="circular" sizes="small">
           <IconButton onClick={openShoppingCartMenu}>

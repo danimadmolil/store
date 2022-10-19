@@ -24,15 +24,7 @@ export default function Price({ off, realPrice, clientPrice }) {
         </Typography>
       </Grid>
       <Typography>{clientPrice}</Typography>
-      <Grid>
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{ borderRadius: 1, padding: "4px 0" }}
-          color="primary">
-          {"افزودن به سبد خرید"}
-        </Button>
-      </Grid>
+      <Grid></Grid>
     </Grid>
   );
 }

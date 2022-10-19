@@ -46,6 +46,7 @@ import ProductComment from "../../components/ProductComment";
 import BulletDivider from "../../components/BulletDivider";
 import { postRequest } from "../../auth/service/request";
 import useUser from "../../user/hooks/useUser";
+import OrderProduct from "../../user/components/OrderProduct";
 const ProductContainer = styled(Box)(({ theme }) => ({
   maxWidth: "1151px",
   height: "auto",
@@ -79,6 +80,7 @@ const colorVariants = [
 ];
 export default function ProductPage() {
   const { productId, ...rest } = useParams();
+  const { user } = useUser();
   const { data } = useQuery(
     ["product", productId],
     async () => {
@@ -416,6 +418,7 @@ export default function ProductPage() {
             </Stack>
             <Divider variant="middle" sx={{ margin: "18px 0" }} />
             <Price realPrice={8399000} clientPrice={799000} />
+            <OrderProduct productId={productId} />
           </Paper>
         </Grid>
       </Grid>

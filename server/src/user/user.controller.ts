@@ -24,4 +24,12 @@ export class UserController {
   deleteAccount(@Req() req: Request) {
     return this.userService.deleteAccount(req.user);
   }
+  @Get('order')
+  getUserOrder(@Req() req: Request) {
+    return this.userService.getOrders(req.user);
+  }
+  @Post('orderProduct')
+  orderProduct(@Req() req: Request) {
+    return this.userService.orderProduct(req.user, req.body.productIds);
+  }
 }

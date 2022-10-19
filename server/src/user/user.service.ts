@@ -48,4 +48,30 @@ export class UserService {
 
     return comments;
   }
+  async getOrders(user: any) {
+    const userOrders = await this.prisma.order.findFirst({
+      where: { userId: user.id, status: 'pending' },
+      include: { ProductOnOrder: { include: { product: true } } },
+    });
+    console.log({ userOrders });
+    return userOrders;
+  }
+  async orderProduct(user: any, productId) {
+    let userOrder = await this.prisma.order.findFirst({
+      where: { userId: user.id, status: 'pending' },
+    });
+    if (!userOrder) {
+      userOrder = await this.prisma.order.create({
+        data: { userId: user.id, status: 'pending' },
+      });
+    }
+    const res = await this.prisma.productOnOrder.create({
+      data: { orderId: userOrder.id, productId },
+    });
+    const userOrders = await this.prisma.order.findFirst({
+      where: { userId: user.id, status: 'pending' },
+      include: { ProductOnOrder: { include: { product: true } } },
+    });
+    return userOrders;
+  }
 }

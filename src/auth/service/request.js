@@ -1,4 +1,5 @@
 import { getItemWithExpire } from "../../utils/localStorage";
+import { BASE_URL } from "../../utils/constatnts";
 export async function postRequest(path, payload) {
   return fetch(path, {
     method: "post",
@@ -15,6 +16,22 @@ export async function postRequest(path, payload) {
           Authorization: "Bearer " + getItemWithExpire("accessToken"),
         },
       });
+    }
+  });
+}
+export async function getRequest(path, options = { options: {}, headers: {} }) {
+  return fetch(path, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getItemWithExpire("accessToken")}`,
+      ...options?.headers,
+    },
+    ...options.options,
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("failed to get request to : " + path);
     }
   });
 }

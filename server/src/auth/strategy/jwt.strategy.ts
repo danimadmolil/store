@@ -17,7 +17,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       where: { email: payload.email },
     });
     delete user.password;
-    delete user.id;
     return user;
   }
 }
