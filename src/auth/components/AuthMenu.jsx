@@ -19,10 +19,10 @@ import { deleteCredentialsCache } from "../../utils/localStorage";
 import { useQueryClient } from "@tanstack/react-query";
 import { Delete, ShoppingCart, Visibility } from "@mui/icons-material";
 import useOrderQuery from "../../user/hooks/useOrderQuery";
-
+import useUser from "../../user/hooks/useUser";
 export default function AuthMenu() {
   const [shoppingCartRef, setShoppingCartRef] = useState(null);
-  const { data, isLoading, isFetching, isError } = useOrderQuery();
+  const { user, deleteUser } = useUser();
   const qc = useQueryClient();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,8 +34,7 @@ export default function AuthMenu() {
     setAnchorEl(null);
   };
   function handleLogout() {
-    deleteCredentialsCache();
-    qc.setQueryData(["profile"], null);
+    deleteUser();
   }
   function openShoppingCartMenu(e) {
     setShoppingCartRef(e.target);
@@ -192,7 +191,7 @@ export default function AuthMenu() {
               <Visibility sx={{ color: "text.primary" }} />
             </ListItemIcon>
             <Link
-              to="/cart"
+              to="/profile/orders"
               style={{
                 width: "100%",
                 height: "100%",
@@ -222,7 +221,7 @@ export default function AuthMenu() {
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        badgeContent={data?.ProductOnOrder?.length}
+        badgeContent={user?.Order && user.Order[0]?.ProductOnOrder?.length}
         color={"primary"}>
         <Avatar variant="circular" sizes="small">
           <IconButton onClick={openShoppingCartMenu}>

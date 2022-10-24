@@ -11,6 +11,7 @@ import Comments from "./pages/Profile/subPages/Comments";
 import { connect } from "react-redux";
 import Setting from "./pages/Profile/subPages/Setting";
 import ProductPage from "./pages/Product/Product.page";
+import Orders from "./pages/Profile/subPages/Orders";
 
 const Body = styled(Box)(({ theme }) => ({
   background: theme.palette.background.default,
@@ -34,6 +35,7 @@ function App({ themeType }) {
             <Route path="/profile" element={<ProfilePage />}>
               <Route path="/profile/setting" element={<Setting />}></Route>
               <Route path="/profile/comments" element={<Comments />}></Route>
+              <Route path="/profile/orders" element={<Orders />}></Route>
               <Route
                 path="*"
                 element={

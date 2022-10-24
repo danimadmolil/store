@@ -9,7 +9,10 @@ export class UserService {
     const result = await this.prisma.user.findUnique({
       where: { email: user.email },
       include: {
-        Order: true,
+        Order: {
+          where: { status: 'pending' },
+          include: { ProductOnOrder: true },
+        },
       },
     });
     delete result.password;
@@ -49,11 +52,12 @@ export class UserService {
     return comments;
   }
   async getOrders(user: any) {
-    const userOrders = await this.prisma.order.findFirst({
-      where: { userId: user.id, status: 'pending' },
+    const userOrders = await this.prisma.order.findMany({
+      where: { userId: user.id },
+      orderBy: { id: 'desc' },
       include: { ProductOnOrder: { include: { product: true } } },
     });
-    console.log({ userOrders });
+
     return userOrders;
   }
   async orderProduct(user: any, productId) {

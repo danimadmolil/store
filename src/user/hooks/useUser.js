@@ -90,6 +90,7 @@ export default function useUser() {
   function deleteUser() {
     setUser(null);
     deleteCredentialsCache();
+    qc.updateUser(["user"], null);
   }
   return { user, updateUser, deleteUser };
 }

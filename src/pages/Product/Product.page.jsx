@@ -80,6 +80,7 @@ const colorVariants = [
 ];
 export default function ProductPage() {
   const { productId, ...rest } = useParams();
+  
   const { user } = useUser();
   const { data } = useQuery(
     ["product", productId],

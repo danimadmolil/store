@@ -19,6 +19,7 @@ import {
   ListAlt,
   MapOutlined,
   Settings,
+  ShoppingCart,
 } from "@mui/icons-material";
 import useUser from "../../user/hooks/useUser";
 import { Link, Outlet } from "react-router-dom";
@@ -40,7 +41,8 @@ const menus = [
   { id: 1, title: "تنظیمات", link: "/profile/setting", icon: Settings },
   { id: 2, title: "لیست های من", link: "/profile/lists", icon: ListAlt },
   { id: 3, title: "دیدگاه ها", link: "/profile/comments", icon: Comment },
-  { id: 4, title: "ادرس ها", link: "/profile/orders", icon: MapOutlined },
+  { id: 4, title: "ادرس ها", link: "/profile/addresses", icon: MapOutlined },
+  { id: 5, title: "سفارش ها", link: "/profile/orders", icon: ShoppingCart },
 ];
 export default function ProfilePage() {
   const { user } = useUser();
@@ -173,7 +175,7 @@ export default function ProfilePage() {
           </Stack>
         </Paper>
         <Paper
-          sx={{ width: "100%", height: "auto" }}
+          sx={{ mt: 2, width: "100%", height: "auto" }}
           className="sub_page__container">
           <Outlet />
         </Paper>

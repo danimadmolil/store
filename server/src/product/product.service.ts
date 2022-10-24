@@ -50,4 +50,20 @@ export class ProductService {
     });
     return productComments;
   }
+  async dropProductFromOrder(user, data) {
+    const pendingOrderOfCurrentUser = await this.prisma.order.findFirst({
+      where: { status: 'pending', userId: Number(user.id) },
+    });
+    const productDeleted = await this.prisma.productOnOrder.delete({
+      where: {
+        orderId_productId: {
+          orderId: pendingOrderOfCurrentUser.id,
+          productId: Number(data.productId),
+        },
+      },
+    });
+    return productDeleted;
+    const productToDelete = await this.prisma.productOnOrder;
+    return productToDelete;
+  }
 }

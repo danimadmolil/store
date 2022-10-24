@@ -47,9 +47,11 @@ export class ProductController {
   @UseGuards(AuthGuard('jwt'))
   createComment(@Req() req: Request) {
     // return { user: req.user, body: req.body.comment };
-    return this.productService.addComment(
-      req.user,
-      req.body
-    );
+    return this.productService.addComment(req.user, req.body);
+  }
+  @Post('dropProductFromOrder')
+  @UseGuards(AuthGuard('jwt'))
+  dropProductFromOrder(@Req() req: Request) {
+    return this.productService.dropProductFromOrder(req.user, req.body);
   }
 }

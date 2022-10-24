@@ -1,7 +1,13 @@
 import { Badge } from "@mui/material";
 import React from "react";
 import "./Tag";
-export default function Tag({ value, variant, sx = {}, ...restProps }) {
+export default function Tag({
+  value,
+  variant,
+  rootStyle = {},
+  sx = {},
+  ...restProps
+}) {
   return (
     <Badge
       color="primary"
@@ -11,6 +17,7 @@ export default function Tag({ value, variant, sx = {}, ...restProps }) {
           transform: "none",
           position: "static",
           borderRadius: variant === "rectangular" ? "4px" : "50px",
+          ...rootStyle,
         },
         ...sx,
       }}
