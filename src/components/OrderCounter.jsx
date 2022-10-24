@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postRequest } from "../auth/service/request";
 
 async function dropProductFromOrder(productId) {
-  return postRequest("http://localhost:4001/product/dropProductFromOrder", {
+  return postRequest("/product/dropProductFromOrder", {
     productId,
   });
 }

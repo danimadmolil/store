@@ -1,7 +1,7 @@
 import { getItemWithExpire } from "../../utils/localStorage";
 import { BASE_URL } from "../../utils/constatnts";
 export async function postRequest(path, payload) {
-  return fetch(path, {
+  return fetch(BASE_URL + path, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export async function postRequest(path, payload) {
   });
 }
 export async function getRequest(path, options = { options: {}, headers: {} }) {
-  return fetch(path, {
+  return fetch(BASE_URL+path, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getItemWithExpire("accessToken")}`,

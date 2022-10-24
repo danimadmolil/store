@@ -13,7 +13,7 @@ export default function OrderProduct({ productId }) {
   const [isProductInCart, setIsProductInCart] = useState(false);
   const mutation = useMutation(
     (_productId) => {
-      return postRequest("http://localhost:4001/user/orderProduct", {
+      return postRequest("/user/orderProduct", {
         productIds: Number(_productId),
       });
     },

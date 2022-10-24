@@ -98,7 +98,7 @@ export default function ProductPage() {
   );
   const mutation = useMutation(
     (data) => {
-      return postRequest("http://localhost:4001/product/comment", {
+      return postRequest("/product/comment", {
         body: {
           productId,
           comment: data,

@@ -4,7 +4,7 @@ export default function useOrderQuery() {
   const { data, isLoading, isError, isFetching } = useQuery(
     ["order"],
     () => {
-      return getRequest("http://localhost:4001/user/order");
+      return getRequest("/user/order");
     },
     { networkMode: "always" }
   );
