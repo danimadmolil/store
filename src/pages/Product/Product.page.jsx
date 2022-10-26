@@ -47,6 +47,7 @@ import BulletDivider from "../../components/BulletDivider";
 import { postRequest } from "../../auth/service/request";
 import useUser from "../../user/hooks/useUser";
 import OrderProduct from "../../user/components/OrderProduct";
+import { BASE_URL } from "../../utils/constatnts";
 const ProductContainer = styled(Box)(({ theme }) => ({
   maxWidth: "1151px",
   height: "auto",
@@ -80,17 +81,17 @@ const colorVariants = [
 ];
 export default function ProductPage() {
   const { productId, ...rest } = useParams();
-  
+
   const { user } = useUser();
   const { data } = useQuery(
     ["product", productId],
     async () => {
-      return fetch(`http://localhost:4001/product/${productId}`).then((res) => {
+      return fetch(`${BASE_URL}/product/${productId}`).then((res) => {
         if (res.ok) {
           return res.json();
         }
         throw new Error(
-          `failed to get data from =>  http://localhost:4001/product/${productId}`
+          `failed to get data from =>  ${BASE_URL}/product/${productId}`
         );
       });
     },

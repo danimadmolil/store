@@ -4,6 +4,7 @@ import * as ReactDOMServer from "react-dom/server";
 import SwiperContainer from "../components/SwiperContiner";
 import server from "../server.json";
 import HotOffers from "../components/HotOffers";
+import { BASE_URL } from "../utils/constatnts";
 export default function Home() {
   const theme = useTheme();
   return (
@@ -74,8 +75,8 @@ export default function Home() {
           )}
         />
       </Box>
-      <HotOffers resourcePath={"http://127.0.0.1:4001/hot-offer/1"} />
-      <HotOffers resourcePath={"http://127.0.0.1:4001/hot-offer/2"} />
+      <HotOffers resourcePath={BASE_URL + "/hot-offer/1"} />
+      <HotOffers resourcePath={BASE_URL + "/hot-offer/2"} />
     </Box>
   );
 }

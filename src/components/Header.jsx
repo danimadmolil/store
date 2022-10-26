@@ -17,6 +17,7 @@ import { MenuOpen, QuestionAnswer } from "@mui/icons-material";
 import useBreakpoint from "../hooks/useBreakpoint";
 import SuperMenu from "./SuperMneu";
 import AuthButtonContainer from "../auth/components/AuthButtonContainer";
+import { BASE_URL } from "../utils/constatnts";
 
 const Navbar = styled(Box, { shouldForwardProp: (prop) => true })(
   ({ theme, open = false }) => ({
@@ -100,7 +101,7 @@ export default function Header() {
     setCollapse(!collapse);
   }
   useEffect(() => {
-    fetch("http://localhost:4001/category")
+    fetch(`${BASE_URL}/category`)
       .then((res) => {
         if (res.ok) {
           return res.json();

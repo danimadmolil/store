@@ -11,7 +11,7 @@ export async function postRequest(path, payload) {
   }).then((res) => {
     if (res.status === 401) {
       //unAuthenticated
-      fetch("http://localhost:4001/auth/refresh", {
+      fetch(`${BASE_URL}/auth/refresh`, {
         headers: {
           Authorization: "Bearer " + getItemWithExpire("accessToken"),
         },
@@ -20,7 +20,7 @@ export async function postRequest(path, payload) {
   });
 }
 export async function getRequest(path, options = { options: {}, headers: {} }) {
-  return fetch(BASE_URL+path, {
+  return fetch(BASE_URL + path, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getItemWithExpire("accessToken")}`,

@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { BASE_URL } from "../../utils/constatnts";
 import {
   getItemWithExpire,
   setItemWithExpire,
@@ -7,8 +8,8 @@ import {
 } from "../../utils/localStorage";
 // import { setUser as setUserAction } from "../../auth/auth.slice";
 // import { useDispatch } from "react-redux";
-const PROFILE_URL = "http://localhost:4001/user/profile";
-const REFRESH_TOKEN_URL = "http://localhost:4001/auth/refresh";
+const PROFILE_URL = `${BASE_URL}/user/profile`;
+const REFRESH_TOKEN_URL = `${BASE_URL}/auth/refresh`;
 
 function getTokens() {
   const refreshToken = getItemWithExpire("refreshToken");

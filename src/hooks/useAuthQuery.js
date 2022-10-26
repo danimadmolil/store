@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constatnts";
 import {
   deleteCredentialsCache,
   getItemWithExpire,
@@ -53,9 +54,9 @@ export default function useAuthQuery(
   console.log("useAuthQuery hook", { isLoading, data, isError, status });
 
   useQuery(
-    ["http://localhost:4001/auth/refresh"],
+    [`${BASE_URL}/auth/refresh`],
     async () => {
-      return fetch("http://localhost:4001/auth/refresh", {
+      return fetch(`${BASE_URL}/auth/refresh`, {
         headers: {
           Authorization: `Bearer ${getItemWithExpire("refreshToken")}`,
         },
